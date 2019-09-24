@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'sanergy_leave',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -79,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'sanergy',
-        'USER':'mark',
-        'PASSWORD':'123'
+        'USER':'moringaschool',
+        'PASSWORD':'joe'
     }
 }
 
@@ -130,3 +131,5 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
