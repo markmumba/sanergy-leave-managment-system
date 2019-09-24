@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: django-enumchoicefield
+Version: 1.1.0
+Summary: A choice field for Django using native Python Enums
+Home-page: https://github.com/timheap/django-enumchoicefield
+Author: Tim Heap
+Author-email: tim@timheap.me
+License: BSD License
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: BSD License
+Requires-Dist: Django (>=1.10)
+
+======================
+Django EnumChoiceField
+======================
+
+.. image:: https://travis-ci.org/timheap/django-enumchoicefield.svg?branch=master
+    :target: https://travis-ci.org/timheap/django-enumchoicefield
+.. image:: https://readthedocs.org/projects/django-enumchoicefield/badge/?version=latest
+    :target: https://django-enumchoicefield.readthedocs.io/en/latest/
+.. image:: https://badge.fury.io/py/django-enumchoicefield.svg
+    :target: https://pypi.org/project/django-enumchoicefield/
+
+A Django model field for native Python 3.4 Enums.
+
+.. code:: python
+
+    from enumchoicefield import ChoiceEnum, EnumChoiceField
+
+    class Fruit(ChoiceEnum):
+        apple = "Apple"
+        banana = "Banana"
+        orange = "Orange"
+
+    class Profile(models.Model):
+        name = models.CharField(max_length=100)
+        favourite_fruit = EnumChoiceField(Fruit, default=Fruit.banana)
+
+Documentation
+=============
+
+See `Django EnumChoiceField on ReadTheDocs <https://django-enumchoicefield.readthedocs.org/en/latest/>`_.
+
+Testing
+=======
+
+To run the tests:
+
+.. code:: sh
+
+    $ virtualenv venv
+    $ source venv/bin/activate
+    $ pip install -r requirements-dev.txt
+    $ tox
+
+

@@ -1,6 +1,19 @@
+import datetime
 from django.db import models
 from django.utils import timezone
-import datetime
+from enumchoicefield import ChoiceEnum, EnumChoiceField
+
 # Create your models here.
 
-class leavetypes(models.Model)
+class workerChoices(ChoiceEnum):
+    Male = 'M'
+    Female = 'F'
+    # worker level
+    Employee = 'Employee'
+    Manager = 'Manager'
+    HR = 'HR'
+    # employment status
+    Permanent = 'Permanent'
+    Probationary = 'Probationary'
+    Limited_term = 'Limited-term'
+    Temporary = 'Temporary'
