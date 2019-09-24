@@ -18,4 +18,5 @@ from django.urls import path
 import sanergy_leave.urls
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',include (sanergy_leave.urls)),
 ]
