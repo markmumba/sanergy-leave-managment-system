@@ -1,5 +1,9 @@
 {
     "python.pythonPath": "virtual/bin/python3.6",
+<<<<<<< HEAD
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true
+=======
+    "python.linting.enabled": false
+>>>>>>> efb69e47f8743d5f7e8ca9cfd89c12a52015bb1d
 }

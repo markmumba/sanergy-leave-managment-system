@@ -5,3 +5,8 @@ from django.http import HttpResponse,Http404,HttpResponseRedirect
 def homepage(request):
     return render(request, 'homepage.html')
     
+
+def  leavepage(request):
+    return render (request,'leavepage.html')
+
+    

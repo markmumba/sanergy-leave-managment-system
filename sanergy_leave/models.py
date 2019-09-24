@@ -18,6 +18,7 @@ class workerChoices(ChoiceEnum):
     Probationary = 'Probationary'
     Limited_term = 'Limited-term'
     Temporary = 'Temporary'
+<<<<<<< HEAD
 
 class workerDetails(models.Model):
     First_Name = models.CharField(max_length=14)
@@ -67,3 +68,5 @@ class workerDetails(models.Model):
 
 # citrus_fans = Profile.objects.filter(
 #     favourite_fruit__in=[Fruit.orange, Fruit.lemon, Fruit.lime])
+=======
+>>>>>>> efb69e47f8743d5f7e8ca9cfd89c12a52015bb1d
