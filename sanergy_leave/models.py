@@ -2,7 +2,9 @@ import datetime
 from enum import Enum
 from django.db import models
 from django.utils import timezone
+from sanergy_leave utils import ChoiceEnum
 from enumchoicefield import ChoiceEnum, EnumChoiceField
+
 
 # Create your models here.
 
@@ -18,7 +20,20 @@ class workerChoices(ChoiceEnum):
     Probationary = 'Probationary'
     Limited_term = 'Limited-term'
     Temporary = 'Temporary'
-<<<<<<< HEAD
+
+    # leave categories and their statuses
+
+class EmpLeaveRequestChoices(ChoiceEnum):
+    Personal_Leave = 'Personal'
+    Annual_Leave = 'Annual'
+    Military_Leave = 'Military'
+    Pregnancy_Disability_Leave = 'Expectancy'
+    Pending_Status = 'Pending'
+    Approved_Status = 'Approved'
+    Declined_Status = 'Declined'
+    Cancelled_Status = 'Cancelled'
+
+    #worker details and selections
 
 class workerDetails(models.Model):
     First_Name = models.CharField(max_length=14)
@@ -68,5 +83,3 @@ class workerDetails(models.Model):
 
 # citrus_fans = Profile.objects.filter(
 #     favourite_fruit__in=[Fruit.orange, Fruit.lemon, Fruit.lime])
-=======
->>>>>>> efb69e47f8743d5f7e8ca9cfd89c12a52015bb1d
