@@ -31,7 +31,6 @@ class workerDetails(models.Model):
     Country = models.CharField(max_length=20)
     Email_Address = models.EmailField(max_length=70)
     Hire_Date = models.DateField()
-    Nationality = models.CharField(max_length=50)
     Worktype = EnumChoiceField(workerChoices, default = workerChoices.Employee)
     IsActive = models.BooleanField(null=True)
 
