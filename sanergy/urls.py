@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 import sanergy_leave.urls
+from django.contrib.auth import views 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include (sanergy_leave.urls)),
+    path(r'^accounts/', include('registration.backends.simple.urls')),
+    path(r'^logout/$',views.logout,{"next_page":'/'}),
 ]
