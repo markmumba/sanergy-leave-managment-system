@@ -2,9 +2,7 @@ import datetime
 from enum import Enum
 from django.db import models
 from django.utils import timezone
-from enumchoicefield import ChoiceEnum, EnumChoiceField
-
-# from sanergy_leave utils import ChoiceEnum
+from  sanergy_leave.utils import ChoiceEnum
 
 
 # Create your models here.
@@ -22,10 +20,6 @@ class workerChoices(ChoiceEnum):
     Limited_term = 'Limited-term'
     Temporary = 'Temporary'
 
-    class ChoiceEnum(Enum):
-    @classmethod
-        def choices(cls):
-            return tuple((i.name, i.value) for i in cls)
 
     # leave categories and their statuses
 
