@@ -2,8 +2,9 @@ import datetime
 from enum import Enum
 from django.db import models
 from django.utils import timezone
-from sanergy_leave utils import ChoiceEnum
 from enumchoicefield import ChoiceEnum, EnumChoiceField
+
+# from sanergy_leave utils import ChoiceEnum
 
 
 # Create your models here.
@@ -21,6 +22,11 @@ class workerChoices(ChoiceEnum):
     Limited_term = 'Limited-term'
     Temporary = 'Temporary'
 
+    class ChoiceEnum(Enum):
+    @classmethod
+        def choices(cls):
+            return tuple((i.name, i.value) for i in cls)
+
     # leave categories and their statuses
 
 class EmpLeaveRequestChoices(ChoiceEnum):
@@ -35,19 +41,25 @@ class EmpLeaveRequestChoices(ChoiceEnum):
 
     #worker details and selections
 
-class workerDetails(models.Model):
+    Emp_No = models.AutoField(primary_key=True)
     First_Name = models.CharField(max_length=14)
     Middle_Name = models.CharField(max_length=14,null=True)
     Last_Name = models.CharField(max_length=14)
-    Mobile_Number = models.PositiveIntegerField(default=0)
     Birth_Date = models.DateField()
-    Gender = EnumChoiceField(workerChoices)
+    Gender = models.CharField(max_length=1, choices=workerChoices.choices())
+    Street_Address = models.CharField(max_length=50)
+    Address2 = models.CharField(max_length=50, null=True)
     City = models.CharField(max_length=20)
     State = models.CharField(max_length=20)
+    Postal_Code = models.PositiveIntegerField(default=0)
     Country = models.CharField(max_length=20)
+    Mobile_Number = models.PositiveIntegerField(default=0)
     Email_Address = models.EmailField(max_length=70)
-    Hire_Date = models.DateField()
-    Worktype = EnumChoiceField(workerChoices, default = workerChoices.Employee)
+    Hire_Date = models.DateField(help_text='Employee joining date')
+    End_Date = models.DateField(null=True)
+    Designation = models.CharField(max_length=10, choices=workerChoices.choices())
+    Nationality = models.CharField(max_length=50)
+    Worktype = models.CharField(max_length=15, choices=workerChoices.choices())
     IsActive = models.BooleanField(null=True)
 
     def __str__(self):
