@@ -17,3 +17,5 @@ class workerChoices(ChoiceEnum):
     Probationary = 'Probationary'
     Limited_term = 'Limited-term'
     Temporary = 'Temporary'
+
+    
