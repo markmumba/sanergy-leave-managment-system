@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/moringaschool/Documents/prodev/sanergy-leave-managment-system/virtual"
+set -gx VIRTUAL_ENV "/home/mark/Documents/Python-projects/prodev/sanergy-leave-system/virtual"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

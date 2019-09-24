@@ -1,4 +1,4 @@
-#!/home/moringaschool/Documents/prodev/sanergy-leave-managment-system/virtual/bin/python
+#!/home/mark/Documents/Python-projects/prodev/sanergy-leave-system/virtual/bin/python
 from django.core import management
 
 if __name__ == "__main__":
