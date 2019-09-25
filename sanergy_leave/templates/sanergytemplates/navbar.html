@@ -1,120 +1,43 @@
-
-{% load bootstrap4 %}
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-
-  </style>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  {% if title %}
-  <title>Neighborhood {{title}}</title>
-  {% else %}
-  <title> Neighborhood </title>
-  {% endif %}
-
-  {% block styles %}
-  {% bootstrap_css %}
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300, 400, 700" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-datepicker.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.timepicker.css' %} ">
-
-  <link rel="stylesheet" type="text/css" href="{% static 'fonts/ionicons/css/ionicons.min.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'fonts/flaticon/font/flaticon.css' %} ">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %} ">
-
-  {% endblock %}
-</head>
-
-{% block content %}
-
-<body style="background-color:lightgray" class="container-fluid">
-    <header style="display: inline-flex; color: cyan; padding-left: 5%" class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-        <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'homepage' %}"> LMS </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-            </div>            
-            <div class="navbar-nav">
-              {% if user.is_authenticated %}
-                <a class="nav-item nav-link nav-item " href="{% url 'homepage' %}">Take Leave</a>
-                <a class="nav-item nav-link nav-item glyphicon glyphicon-user" href="{% url 'profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-              {% else %}
-                <a class="nav-item nav-link nav-item glyphicon glyphicon-log-in mr-sm-5 " href="{% url 'login' %}">Take Leave</a>
-                <a  class="nav-item nav-link " href="{% url 'register' %}">Register</a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-12">
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-
-
-        </div>
-      </div>
-    </main>
-</body>
-
-<div class="container-fluid ">
-	{% for post in posts %}
-        <article class="media content-section">
-          <img style="width: 150px; height:150px;" class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
-          <div class="ml-5 media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-              <small class="text-muted">@{{ post.date_posted|date:"F d, Y" }}</small>
-            </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
-    {% if is_paginated %}
-
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
-
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-      {% endfor %}
-
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
-
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">HOME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+          {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'applyform' %}">Take leave</a>
+          </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+      </ul>
+      {% else %}
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Take Leave</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">login</a>
+          </li>
+    </ul>
     {% endif %}
-</div>
+    </div>
+  </nav>
 
-{% endblock  %}
+
+
+
+
+
+
+
+
+
+
+
+
+
