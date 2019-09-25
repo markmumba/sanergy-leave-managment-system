@@ -20,6 +20,8 @@ import sanergy_leave.urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include (sanergy_leave.urls)),
+    path(r'^accounts/', include('registration.backends.simple.urls')),
+    path(r'^logout/$',views.logout,{"next_page":'/'}),
    
     
 ]
