@@ -27,7 +27,7 @@ class EmpLeaveRequestChoices(ChoiceEnum):
     Personal_Leave = 'Personal'
     Annual_Leave = 'Annual'
     Military_Leave = 'Military'
-    Pregnancy_Disability_Leave = 'Expectancy'
+    Pregnancy_Disability_Leave = 'PDL'
     Pending_Status = 'Pending'
     Approved_Status = 'Approved'
     Declined_Status = 'Declined'
@@ -61,31 +61,6 @@ class EmpLeaveRequestChoices(ChoiceEnum):
 
 
 
-
-
-
-
-
-
-
-
-
-# from enumchoicefield import ChoiceEnum, EnumChoiceField
-
-# class Fruit(ChoiceEnum):
-#     apple = "Apple"
-#     banana = "Banana"
-#     lemon = "Lemon"
-#     lime = "Lime"
-#     orange = "Orange"
-
-# class Profile(models.Model):
-#     name = models.CharField(max_length=100)
-#     favourite_fruit = EnumChoiceField(Fruit, default=Fruit.banana)
-
-
-# apple_lovers = Profile.objects.filter(favourite_fruit=Fruit.apple)
-# banana_haters = Profile.objects.exclude(favourite_fruit=Fruit.banana)
 
 # citrus_fans = Profile.objects.filter(
 #     favourite_fruit__in=[Fruit.orange, Fruit.lemon, Fruit.lime])

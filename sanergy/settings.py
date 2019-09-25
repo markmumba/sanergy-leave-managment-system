@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'sanergy',
         'USER':'mark',
-        'PASSWORD':'123'
+        'PASSWORD':'joe'
     }
 }
 
@@ -133,3 +133,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+hint: as appropriate to mark resolution and make a commit.
