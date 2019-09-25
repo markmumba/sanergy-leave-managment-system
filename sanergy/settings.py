@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bootstrap4',
+    'users',
+    'crispy_forms',
     'sanergy_leave',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,6 +55,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'sanergy.urls'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = ('..')#user is taken home after login in
+
 
 TEMPLATES = [
     {
@@ -79,7 +84,7 @@ WSGI_APPLICATION = 'sanergy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'mark',
+        'NAME':'sanergy',
         'USER':'moringaschool',
         'PASSWORD':'joe'
     }
