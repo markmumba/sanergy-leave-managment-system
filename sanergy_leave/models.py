@@ -19,7 +19,7 @@ class workerChoices(ChoiceEnum):
     Probationary = 'Probationary'
     Limited_term = 'Limited-term'
     Temporary = 'Temporary'
-    
+
     # leave categories and their statuses
 
 class EmpLeaveRequestChoices(ChoiceEnum):

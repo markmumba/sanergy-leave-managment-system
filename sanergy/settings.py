@@ -79,8 +79,8 @@ WSGI_APPLICATION = 'sanergy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'sanergy',
-        'USER':'mark',
+        'NAME':'mark',
+        'USER':'moringaschool',
         'PASSWORD':'joe'
     }
 }
@@ -133,4 +133,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-hint: as appropriate to mark resolution and make a commit.
