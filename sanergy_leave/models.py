@@ -33,7 +33,7 @@ class EmpLeaveRequestChoices(ChoiceEnum):
     Cancelled_Status = 'Cancelled'
 
     #worker details and selections
-
+class Employee(models.Model):
     Emp_No = models.AutoField(primary_key=True)
     First_Name = models.CharField(max_length=14)
     Middle_Name = models.CharField(max_length=14,null=True)
@@ -63,3 +63,20 @@ class EmpLeaveRequestChoices(ChoiceEnum):
 
 # citrus_fans = Profile.objects.filter(
 #     favourite_fruit__in=[Fruit.orange, Fruit.lemon, Fruit.lime])
+
+class Leave(models.Model):
+    empLeave_req_id= models.AutoField(primary_key=True)
+    emp_id=models.ForeignKey(Employee, on_delete=models.CASCADE,default=0)
+    emp_fullname=models.CharField(max_length=60)
+    Leave_Type = models.CharField(max_length=10, help_text= 'Which type of leave are you taking')
+    Begin_Date = models.DateField(help_text='Leave begin date')
+    End_Date = models.DateField(help_text='Leave end date')
+    Requested_Days = models.PositiveIntegerField(default=0,help_text='Total no of requested leave days')
+    Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
+    Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
+    Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
+    Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
+    Emp_Comments = models.CharField(max_length=500, null=True)
+
+    def __str__(self):
+        return '%s %s %s' % (self.empLeave_req_id, self.emp_id, self.emp_fullname)
