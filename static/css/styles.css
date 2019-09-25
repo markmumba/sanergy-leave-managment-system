@@ -1,0 +1,147 @@
+
+* {
+  background-color: #c4c4c4;
+}
+.fl{
+  float: right;
+}
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #000;
+}
+
+.btn, .form-control {
+  outline: none;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* Header */
+header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+header .navbar-brand {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-weight: 400;
+}
+
+header .navbar-brand span {
+  color: #007bff;
+}
+
+header .top-bar {
+  background: #007bff;
+}
+
+header .top-bar a {
+  color: #fff;
+  padding: 10px;
+  font-size: 13px;
+  display: inline-block;
+}
+
+header .top-bar .cta-btn {
+  display: inline-block;
+  padding-right: 15px;
+  padding-left: 15px;
+  background: #5AC8D8;
+}
+
+header .top-bar .social li {
+  display: inline-block;
+  text-align: center;
+}
+header .top-bar .social li a:hover {
+    background: #5AC8D8;
+    color: #fff;
+    -webkit-box-shadow: 2px 0 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+header .top-bar .social li a {
+  color: #fff;
+  padding: 10px;
+  width: 40px;
+  display: inline-block;
+}
+/* media querries */
+@media (max-width: 991px) {
+  header .top-bar .social li a {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: inherit;
+  }
+}
+
+@media (max-width: 1199px) {
+  header .navbar {
+    background: white !important;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+}
+
+header .navbar .nav-link {
+  padding: 1.7rem 1rem;
+  outline: none !important;
+}
+
+@media (max-width: 1199px) {
+  header .navbar .nav-link {
+    padding: .5rem 0rem;
+  }
+}
+
+header .navbar .nav-link.active {
+  color: #007bff !important;
+}
+
+header .navbar .dropdown-menu {
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  -webkit-box-shadow: 0 2px 20px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+header .navbar .dropdown-menu .dropdown-item.active {
+  background: #f8f9fa;
+  color: #007bff !important;
+}
+
+header .navbar .dropdown-menu a {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+
+.custom-tabs .border-right {
+  border-right: 1px solid #dee2e6;
+}
+
+@media (max-width: 767px) {
+  .custom-tabs .border-right {
+    border-right: none;
+  }
+}
+
+.element-animate {
+  opacity: 0;
+  visibility: hidden;
+}
