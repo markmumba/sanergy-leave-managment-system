@@ -1,51 +1,41 @@
 {% load bootstrap4 %}
 {% load static %}
+
 <!DOCTYPE html>
 <html>
-<head>
-  <style>
-    body{
-      overflow-x:hidden;
-    }
-  </style>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="ie-edge">
-  {% if title %}
-  <title>LMS {{title}}</title>
-  {% else %}
-  <title> LMS</title>
-  {% endif %}
-  {% block styles %}
-  {% bootstrap_css %}
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300, 400, 700" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-datepicker.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.timepicker.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'fonts/ionicons/css/ionicons.min.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'fonts/flaticon/font/flaticon.css' %} ">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %} ">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-  {% endblock %}
-</head>
-<body>
-  {% block content %}
-  {% include "sanergytemplates/navbar.html" %}
-  {% endblock %}
-  {% comment %} styling {% endcomment %}
-  {% block scripts %}
-  {% bootstrap_javascript %}
-  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-  <script src="{% static 'js/popper.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
-  <script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
-  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-  <script src="{% static 'js/main.js' %}"></script>
-  {% endblock %}
-</body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% if title %}
+
+        <title>
+            {{title}}
+        </title>
+
+        {% endif %}
+    {% block styles %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+      {% bootstrap_css %}
+    {% endblock %}
+
+    </head>
+    <body>
+        {% include "sanergytemplates/navbar.html" %}
+        {% block content %}
+        {% endblock %}
+        {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% bootstrap_javascript %}
+        {% endblock %}
+    
+    </body>
+
+    
 </html>

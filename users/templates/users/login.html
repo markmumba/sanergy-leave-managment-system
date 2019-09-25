@@ -1,29 +1,37 @@
 {% extends "sanergytemplates/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section">
+<div class="container" style="padding-top: 200px;">
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div class="content-section">
         <div id="google-plus-button">Google+ Sign In</div>
         <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Log In</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Login</button>
-                <small class="text-muted ml-2">
-                    <a href="{% url 'homepage' %}">Forgot Password?</a>
-                </small>
-            </div>
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Log In</legend>
+            {{ form|crispy }}
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Login</button>
+            <small class="text-muted ml-2">
+              <a href="{% url 'homepage' %}">Forgot Password?</a>
+            </small>
+          </div>
         </form>
         <div class="border-top pt-3">
-            <small class="text-muted">
-                Don't have an Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-            </small>
+          <small class="text-muted">
+            Don't have an Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+          </small>
         </div>
+      </div>
     </div>
-    {% block scripts %}
-    <script src="https://apis.google.com/js/api:client.js"></script>
+    <div class="col-4"></div>
+  </div>
+</div>
+{% block scripts %}
+<script src="https://apis.google.com/js/api:client.js"></script>
 
 <script type="text/javascript">
   gapi.load('auth2', function () {
@@ -60,5 +68,5 @@
     });
   });
 </script>
-    {% endblock %}
+{% endblock %}
 {% endblock content %}
