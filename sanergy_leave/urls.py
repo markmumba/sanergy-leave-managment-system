@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path(r'',views.homepage,name='homepage'),
-    path(r'',views.leavepage,name='leavepage')
+    path(r'leavepage',views.leavepage,name='leavepage')
 ]
