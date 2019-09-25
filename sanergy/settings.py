@@ -57,6 +57,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'sanergy.urls'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = ('..')#user is taken home after login in
+NOTIFICATIONS_SOFT_DELETE=True
 
 
 TEMPLATES = [
@@ -123,7 +124,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -137,4 +137,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# for social authentication
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GooglePlusAuth',
 
+    'django.contrib.auth.backends.ModelBackend',
+]
+SOCIAL_AUTH_GOOGLE_PLUS_KEY = '...'
+SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '...'
+
+#  any extra scope
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [...]
