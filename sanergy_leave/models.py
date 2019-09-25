@@ -19,15 +19,14 @@ class workerChoices(ChoiceEnum):
     Probationary = 'Probationary'
     Limited_term = 'Limited-term'
     Temporary = 'Temporary'
-
-
+    
     # leave categories and their statuses
 
 class EmpLeaveRequestChoices(ChoiceEnum):
     Personal_Leave = 'Personal'
     Annual_Leave = 'Annual'
     Military_Leave = 'Military'
-    Pregnancy_Disability_Leave = 'PDL'
+    Pregnancy_Disability_Leave = 'Expectant'
     Pending_Status = 'Pending'
     Approved_Status = 'Approved'
     Declined_Status = 'Declined'
