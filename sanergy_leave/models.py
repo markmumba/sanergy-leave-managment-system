@@ -51,7 +51,14 @@ class Leave(models.Model):
     Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
     Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
     Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
-    Emp_Comments = models.CharField(max_length=500, null=True)
+    Comments = models.CharField(max_length=500, null=True)
 
     def __str__(self):
         return '%s %s %s' % (self.empLeave_req_id, self.emp_id, self.emp_fullname)
+
+
+
+    @classmethod
+    def print_all(cls):
+        leave = Leave.objects.all()
+        return leave

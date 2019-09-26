@@ -14,8 +14,14 @@ def apply_leave(request):
             leave=form.save(commit = False)
             leave.username = current_user
             leave.save()
-        return redirect('leavepage')
+        return redirect('append_to_table')
     else:
         form = LeaveForm()
 
     return render(request, 'sanergytemplates/leave_apply.html',{'form':form})
+
+
+def append_to_table (request):
+        current_user=request.user
+        leaves=Leave.print_all()
+        return render(request, 'sanergytemplates/leave_apply.html',{'leaves':leaves})

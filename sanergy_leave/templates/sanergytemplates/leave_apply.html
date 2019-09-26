@@ -1,6 +1,7 @@
+{% extends "sanergytemplates/base.html" %}
 {% load bootstrap4 %}
 {% load staticfiles %}
-{%block content %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 
@@ -17,28 +18,93 @@
     {% endblock %}
 
 </head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
 
 <body>
-
     <div class="panel panel-default">
-        <div class="container">
-        <div class="panel-body">
-            <form action="{% url 'applyform'%}" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-6" style="padding-right: 200px; padding-left:90px; padding-top: 70px;">
+                <form action="{% url 'applyform'%}" method="post" enctype="multipart/form-data">
 
-                {% csrf_token%}
-                {% bootstrap_form form %}
-                <div class="form-group text-center">
-                    <input type="submit" class="btn btn-primary sign-up-button" value="Share">
-                </div>
-                <input type="hidden" name="next" value="">
-            </form>
+                    {% csrf_token%}
+                    {% bootstrap_form form %}
+                    <div class="form-group text-center">
+                        <input type="submit" class="btn btn-primary sign-up-button" value="Apply">
+                    </div>
+                    <input type="hidden" name="next" value="">
+                </form>
+            </div>
+
+            <div class="col-6" style="padding-top: 100px; padding-right: 40px;">
+                <table>
+                    <tr>
+                        <th>Days</th>
+                        <th>Leave Type</th>
+                        <th>Status</th>
+                        <th> Leave Type</th>
+                        
+                    </tr>
+                    {% for leave in leaves %}
+                    <tr>
+                        <td>{{leave.Leave_Type}}</td>
+                        <td>{{leave.Requested_Days}}</td>
+                        <td>{{Leave_Status}}</td>
+                    </tr>
+                   {% endfor%}
+                </table>
+
+            </div>
         </div>
     </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     {% block scripts %}
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% bootstrap_javascript %} {% endblock %}
+
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:30000",
+                // You can put more options here.
+
+            });
+        });
+    </script>
+    {% bootstrap_javascript %}
+    {% endblock %}
 
 </body>
 
