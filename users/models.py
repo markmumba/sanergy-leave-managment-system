@@ -7,7 +7,7 @@ from django.core.validators import RegexValidator
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     # department = models.ForeignKey(Department, on_delete=models.SET_DEFAULT, related_name='lms_department',
     #                                default=1)

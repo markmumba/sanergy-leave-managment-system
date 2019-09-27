@@ -44,7 +44,7 @@
                 <form action="{% url 'applyform'%}" method="post" enctype="multipart/form-data">
 
                     {% csrf_token%}
-                    {% bootstrap_form form %}
+                    {% bootstrap_form lform %}
                     <div class="form-group text-center">
                         <input type="submit" class="btn btn-primary sign-up-button" value="Apply">
                     </div>
@@ -55,26 +55,24 @@
             <div class="col-6" style="padding-top: 100px; padding-right: 40px;">
                 <table>
                     <tr>
-                        <th>Days</th>
-                        <th>Leave Type</th>
-                        <th>Status</th>
-                        <th> Leave Type</th>
-                        
+                        <th>Type</th>
+                        <th>Requested Days</th>
+                        <th>Status </th>
+                        <!-- <th> Leave Type</th> -->
+
                     </tr>
-                    {% for leave in leaves %}
+                    {% for leave in leavess %}
                     <tr>
                         <td>{{leave.Leave_Type}}</td>
                         <td>{{leave.Requested_Days}}</td>
-                        <td>{{Leave_Status}}</td>
+                        <td>{{leave.Leave_Status}}</td>
                     </tr>
-                   {% endfor%}
+                    {% endfor%}
                 </table>
 
             </div>
         </div>
     </div>
-
-
 
 
 

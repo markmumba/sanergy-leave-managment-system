@@ -21,6 +21,9 @@ class workerChoices(ChoiceEnum):
     Limited_term = 'Limited-term'
     Temporary = 'Temporary'
 
+    class Meta:
+        Abstract=True
+
     # leave categories and their statuses
 
 class EmpLeaveRequestChoices(ChoiceEnum):
@@ -33,6 +36,8 @@ class EmpLeaveRequestChoices(ChoiceEnum):
     Declined_Status = 'Declined'
     Cancelled_Status = 'Cancelled'
 
+    class Meta:
+        Abstract=True
 
 
 
