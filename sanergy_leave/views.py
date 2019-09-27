@@ -21,6 +21,7 @@ def apply_leave(request):
         
     else:
         form = LeaveForm()
+        
     leaves = Leave.print_all()
 
     return render(request, 'sanergytemplates/leave_apply.html',{'lform':form, "leavess":leaves})
