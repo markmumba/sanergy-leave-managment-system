@@ -47,10 +47,6 @@ class Leave(models.Model):
     Begin_Date = models.DateField(help_text='Leave begin date')
     End_Date = models.DateField(help_text='Leave end date')
     Requested_Days = models.PositiveIntegerField(default=0,help_text='Total no of requested leave days')
-    Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
-    Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
-    Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
-    Leave_Status = models.CharField(max_length=10, choices=EmpLeaveRequestChoices.choices())
     Comments = models.CharField(max_length=500, null=True)
 
     def __str__(self):

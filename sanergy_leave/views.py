@@ -6,6 +6,7 @@ from .forms import *
 def homepage(request):
     return render(request, 'sanergytemplates/homepage.html')
 
+@
 def apply_leave(request):
     current_user = request.user
     if request.method == 'POST':
