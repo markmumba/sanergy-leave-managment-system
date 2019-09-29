@@ -14,11 +14,11 @@ def apply_leave(request):
     current_user = request.user
     if request.method == 'POST':
         form = LeaveForm(request.POST, request.FILES)
-        if 'Begin_Date' < 'End_Date':
-            delta = 'Begin-Date'-'End_date'
-            Requested_days = delta.days
-
             if form.is_valid():
+                start_date = form.cleaned_data['Begin_Date']
+                end_date = form.cleaned_data['End_Date']
+                delta= end_date-start_date
+                requested_days= delta.days
                 leave = form.save(commit=False)
                 leave.username = current_user
 
@@ -29,7 +29,7 @@ def apply_leave(request):
 
         leaves = Leave.print_all()
 
-        return render(request, 'sanergytemplates/leave_apply.html', {'lform': form, "leavess": leaves})
+        return render(request, 'sanergytemplates/leave_apply.html', {'lform': form, "leavess": leaves, 'requested_days' : requested_days})
 
 
 # def append_to_table (request):

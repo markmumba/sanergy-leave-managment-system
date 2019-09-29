@@ -50,6 +50,8 @@
 
                             {% csrf_token%}
                             {% bootstrap_form lform %}
+
+
                             <div class="form-group text-center">
                                 <input type="submit" class="btn btn-primary sign-up-button" value="Apply">
                             </div>
@@ -76,7 +78,7 @@
 
                         <td>{{leave.emp_fullname}}</td>
                         <td>{{leave.Leave_Type}}</td>
-                        <td>{{leave.Requested_Days}}</td>
+                        <td>{{leave.requested_days}}</td>
                         <td>{{leave.Leave_Status}}</td>
 
                     </tr>
