@@ -41,7 +41,7 @@
     <div class="panel panel-default">
         <div class="row">
             <div class="col-6" style="padding-right: 200px; padding-left:90px; padding-top: 70px;">
-                <form action="{% url 'applyform'%}" method="post" enctype="multipart/form-data">
+                <form action="{% url 'applyform'%}" method="post" enctype="multipart/form-data" >
 
                     {% csrf_token%}
                     {% bootstrap_form lform %}
@@ -99,7 +99,7 @@
     <script>
          $(function () {
         $('.datetime-input').datetimepicker({
-            format:'YYYY-MM-DD'
+            format:'DD-MM-YYYY'
         });
     });
     </script>

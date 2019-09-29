@@ -48,7 +48,7 @@ class Leave(models.Model):
     empLeave_req_id= models.AutoField(primary_key=True)
     emp_id=models.ForeignKey(Profile, on_delete=models.CASCADE,default=0)
     emp_fullname=models.CharField(max_length=60)
-    Leave_Type = models.CharField(max_length=10, help_text= 'Which type of leave are you taking')
+    Leave_Type = models.CharField(max_length=10)
     Begin_Date = models.DateField(help_text='Leave begin date')
     End_Date = models.DateField(help_text='Leave end date')
     Requested_Days = models.PositiveIntegerField(default=0,help_text='Total no of requested leave days')
