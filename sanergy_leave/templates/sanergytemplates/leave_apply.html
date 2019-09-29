@@ -38,34 +38,47 @@
 </style>
 
 <body>
+
     <div class="panel panel-default">
         <div class="row">
-            <div class="col-6" style="padding-right: 200px; padding-left:90px; padding-top: 70px;">
-                <form action="{% url 'applyform'%}" method="post" enctype="multipart/form-data" >
+            <div class="col-6" style="padding-right: 200px; padding-left:30px; padding-top: 70px;">
+                <div class="card"
+                    style="width: 900px;border-radius: 60px; box-shadow: 0 40px 15px 0 rgba(0, 0, 0, 0.2); height: 700px; ">
+                    <div class="card-body" style="padding-top: 90px;">
+                        <form action="{% url 'applyform'%}" method="post" enctype="multipart/form-data"
+                            style="height: 50px;">
 
-                    {% csrf_token%}
-                    {% bootstrap_form lform %}
-                    <div class="form-group text-center">
-                        <input type="submit" class="btn btn-primary sign-up-button" value="Apply">
+                            {% csrf_token%}
+                            {% bootstrap_form lform %}
+                            <div class="form-group text-center">
+                                <input type="submit" class="btn btn-primary sign-up-button" value="Apply">
+                            </div>
+                            <input type="hidden" name="next" value="">
+                        </form>
                     </div>
-                    <input type="hidden" name="next" value="">
-                </form>
+                </div>
             </div>
+
 
             <div class="col-6" style="padding-top: 100px; padding-right: 40px;">
                 <table>
                     <tr>
+                        <th>Employee </th>
                         <th>Type</th>
                         <th>Requested Days</th>
                         <th>Status </th>
+                      
                         <!-- <th> Leave Type</th> -->
 
                     </tr>
                     {% for leave in leavess %}
                     <tr>
+
+                        <td>{{leave.emp_fullname}}</td>
                         <td>{{leave.Leave_Type}}</td>
                         <td>{{leave.Requested_Days}}</td>
                         <td>{{leave.Leave_Status}}</td>
+
                     </tr>
                     {% endfor%}
                 </table>
@@ -73,12 +86,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 
 
 
@@ -97,11 +104,11 @@
     <script src="//cdn.bootcss.com/moment.js/2.17.1/moment.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/js/bootstrap-datetimepicker.min.js"></script>
     <script>
-         $(function () {
-        $('.datetime-input').datetimepicker({
-            format:'DD-MM-YYYY'
+        $(function () {
+            $('.datetime-input').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
         });
-    });
     </script>
     {% bootstrap_javascript %}
     {% endblock %}
