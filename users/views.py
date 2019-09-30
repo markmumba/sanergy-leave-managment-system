@@ -10,27 +10,27 @@ from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm
 
 # Create your views here.
 
-def register(request):
-    '''
-    view function for registration
-    '''
-    if request.method=='POST':
-        form=UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username=form.cleaned_data.get('username')
-            useremail=form.cleaned_data.get('email')
-            userphonenumber=form.cleaned_data.get('phone_number')
-            createdAgent=User.objects.filter(email=useremail).first()
-            createdAgent.profile.is_staff=True
-            createdAgent.profile.is_employee=False
-            createdAgent.profile.phone_number=userphonenumber
-            createdAgent.save()
-            messages.success(request,f'Account for {username} created!')
-            return redirect('login')
-        else:
-            form=UserRegisterForm()
-            return render(request, 'users/register.html', {'form': form})
+# def register(request):
+#     '''
+#     view function for registration
+#     '''
+#     if request.method=='POST':
+#         form=UserRegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username=form.cleaned_data.get('username')
+#             useremail=form.cleaned_data.get('email')
+#             userphonenumber=form.cleaned_data.get('phone_number')
+#             createdAgent=User.objects.filter(email=useremail).first()
+#             createdAgent.profile.is_staff=True
+#             createdAgent.profile.is_employee=False
+#             createdAgent.profile.phone_number=userphonenumber
+#             createdAgent.save()
+#             messages.success(request,f'Account for {username} created!')
+#             return redirect('login')
+#         else:
+#             form=UserRegisterForm()
+#             return render(request, 'users/register.html', {'form': form})
 
 
 @login_required

@@ -6,6 +6,11 @@ from django.db import transaction
 from .models import Leave, Notice, Role
 
 
+class AddEmployeeForm(UserCreationForm):
+    class Meta():
+        model = User
+        fields = ['username','email','password1','password2']
+
 class ManagerSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User

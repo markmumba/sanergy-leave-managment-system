@@ -1,12 +1,14 @@
 from datetime import date
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 
 from users.models import Profile
 
-from .forms import LeaveForm
+from .forms import AddEmployeeForm, LeaveForm
 
 # Create your views here.
 
@@ -14,7 +16,7 @@ from .forms import LeaveForm
 def homepage(request):
     return render(request, 'sanergytemplates/homepage.html')
 
-
+@login_required
 def apply_leave(request):
     current_user = request.user
     if current_user.is_superuser == True:
@@ -44,6 +46,30 @@ def apply_leave(request):
 
                 return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
 
+@login_required
 def admin(request):
     return render(request, 'admin/adminsite.html')
-    
+
+@login_required
+def addEmployee(request):
+    return render(request, 'admin/adminsite.html')
+    '''
+    view function for creating manager,
+    '''
+    if request.method=='POST':
+        form=AddEmployeeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username=form.cleaned_data.get('username')
+            useremail=form.cleaned_data.get('email')
+            userphonenumber=form.cleaned_data.get('phone_number')
+            createdAgent=User.objects.filter(email=useremail).first()
+            createdAgent.profile.is_staff=True
+            createdAgent.profile.is_employee=False
+            createdAgent.profile.phone_number=userphonenumber
+            createdAgent.save()
+            messages.success(request,f'Account for {username} created!')
+            return redirect('login')
+        else:
+            form=AddEmployeeForm()
+            return render(request, 'users/register.html', {'form': form})

@@ -43,15 +43,18 @@ class LeaveType(models.Model):
 class LeaveStatus(models.Model):
   Approved = 0
   Pending = 1
-  Awarded = 2
+  Declined = 2
   Statuses=(
-    
+    (Approved,'Approved'),
+    (Pending, 'Pending'),
+    (Declined, 'Declined'),
   )
 
 class Department(models.Model):
     department_name = models.CharField(max_length=30, default = 'Service')
     head_of_department = models.ForeignKey(User, on_delete=models.CASCADE,
                                         related_name='head_of_department', default=1)
+                                        
 
     def __str__(self):
         return f'{self.department_name} Department'
