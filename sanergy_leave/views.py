@@ -34,8 +34,6 @@ def apply_leave(request):
 
     return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
 
-
-# def append_to_table (request):
-#         current_user=request.user
-#         leaves=Leave.print_all()
-#         return render(request, 'sanergytemplates/leave_apply.html',{'leavess':leaves})
+def admin(request):
+    return render(request, 'admin/adminsite.html')
+    
