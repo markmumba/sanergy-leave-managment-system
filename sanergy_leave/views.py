@@ -18,20 +18,21 @@ def apply_leave(request):
         if form.is_valid():
             start_date = form.cleaned_data['Begin_Date']
             end_date = form.cleaned_data['End_Date']
-            requested_days = delta.days
             delta = end_date-start_date
-          
+            requested_days = delta.days
             leave = form.save(commit=False)
             leave.username = current_user
+            leave.emp_id=current_user.id
+            leave.save()
 
             return redirect('applyform')
 
     else:
         form = LeaveForm()
 
-        leaves = Leave.print_all()
+    leaves = Leave.print_all()
 
-        return render(request, 'sanergytemplates/leave_apply.html', {'lform': form, "leavess": leaves, 'requested_days': requested_days})
+    return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
 
 
 # def append_to_table (request):
