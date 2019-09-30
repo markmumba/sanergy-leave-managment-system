@@ -62,14 +62,13 @@ def addEmployee(request):
             form.save()
             username=form.cleaned_data.get('username')
             useremail=form.cleaned_data.get('email')
-            userphonenumber=form.cleaned_data.get('phone_number')
             createdAgent=User.objects.filter(email=useremail).first()
             createdAgent.profile.is_staff=True
             createdAgent.profile.is_employee=False
-            createdAgent.profile.phone_number=userphonenumber
             createdAgent.save()
             messages.success(request,f'Account for {username} created!')
             return redirect('login')
         else:
             form=AddEmployeeForm()
-            return render(request, 'users/register.html', {'form': form})
+            return render(request, 'admin/add_employee.html', {'form': form})
+
