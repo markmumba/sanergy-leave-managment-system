@@ -10,7 +10,6 @@ from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm
 
 # Create your views here.
 
-
 def register(request):
     '''
     view function for registration
@@ -21,7 +20,7 @@ def register(request):
             form.save()
             username=form.cleaned_data.get('username')
             useremail=form.cleaned_data.get('email')
-            userphonenumber=form.cleaned_data.get('phonenumber')
+            userphonenumber=form.cleaned_data.get('phone_number')
             createdAgent=User.objects.filter(email=useremail).first()
             createdAgent.profile.is_staff=True
             createdAgent.profile.is_employee=False

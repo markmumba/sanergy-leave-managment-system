@@ -8,7 +8,7 @@ from django.utils.html import escape, mark_safe
 from PIL import Image
 
 
-class EmploymentTerms(models.Model):
+class EmploymentTerm(models.Model):
   EMPLOYMENT_TERMS = (
     ('PERMANENT', 'Permanent'),
     ('PARTTIME', 'Parttime'),
@@ -28,7 +28,7 @@ class Role(models.Model):
   def __str__(self):
     return self.role
 
-class LeaveTypes(models.Model):
+class LeaveType(models.Model):
   LEAVE_CHOICES = (
     ('EXPECTANCY', 'Expectancy'),
     ('ANNUAL_LEAVE', 'annual'),
@@ -40,6 +40,13 @@ class LeaveTypes(models.Model):
   def __str__(self):
     return self.Leave_Types
 
+class LeaveStatus(models.Model):
+  Approved = 0
+  Pending = 1
+  Awarded = 2
+  Statuses=(
+    
+  )
 
 class Department(models.Model):
     department_name = models.CharField(max_length=30, default = 'Service')
@@ -57,7 +64,7 @@ class Department(models.Model):
 class Leave(models.Model):
     leave_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner', null=True)
-    Leave_Type = models.ForeignKey(LeaveTypes,on_delete=models.CASCADE)
+    Leave_Type = models.ForeignKey(LeaveType,on_delete=models.CASCADE)
     leave_issuer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leave_issuer', null=True)
     Begin_Date = models.DateField(help_text='Leave begin date')
     End_Date = models.DateField(help_text='Leave end date')

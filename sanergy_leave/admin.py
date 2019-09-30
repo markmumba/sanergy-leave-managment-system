@@ -6,5 +6,7 @@ from .models import *
 
 admin.site.register(Department)
 admin.site.register(Role)
-admin.site.register(EmploymentTerms)
-admin.site.register(LeaveTypes)
+admin.site.register(EmploymentTerm)
+admin.site.register(LeaveType)
+admin.site.register(Notice)
+admin.site.register(Leave)
