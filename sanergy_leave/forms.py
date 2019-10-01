@@ -1,5 +1,27 @@
-from .models import *
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.db import transaction
+
+from .models import Leave, Notice, Role
+from users.models import Profile
+
+
+class AddEmployeeForm(UserCreationForm):
+    class Meta():
+        model = User
+        fields = '__all__'
+
+class ManagerSignUpForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = User
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_manager = True
+        if commit:
+            user.save()
+        return user
 
 leave_choices = [
     
@@ -22,4 +44,3 @@ class LeaveForm(forms.ModelForm):
         }
 
         exclude=['empLeave_req_id','emp_id','emp_fullname']
-        
