@@ -4,12 +4,13 @@ from django.contrib.auth.models import User
 from django.db import transaction
 
 from .models import Leave, Notice, Role
+from users.models import Profile
 
 
 class AddEmployeeForm(UserCreationForm):
     class Meta():
-        model = User
-        fields = ['username','email','password1','password2']
+        model = Profile
+        fields = '__all__'
 
 class ManagerSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):

@@ -1,14 +1,17 @@
 from datetime import date
 
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
+from django.template import RequestContext
 
 from users.models import Profile
 
 from .forms import AddEmployeeForm, LeaveForm
+from .models import Leave
 
 # Create your views here.
 
@@ -18,11 +21,12 @@ def homepage(request):
 
 @login_required
 def apply_leave(request):
+    
     current_user = request.user
     if current_user.is_superuser == True:
-        return redirect(request, 'admintemplates/hr.html')
+        return render(request, 'admin/hr.html')
     elif current_user.profile.is_staff == True:
-        return redirect(request, 'admintemplates/manager.html')
+        return render(request, 'admin/manager.html')
     else:
         requested_days = 0
         if request.method == 'POST':
@@ -48,27 +52,40 @@ def apply_leave(request):
 
 @login_required
 def admin(request):
-    return render(request, 'admin/adminsite.html')
+    return render(request, 'admin/manager.html')
 
 @login_required
-def addEmployee(request):
-    return render(request, 'admin/adminsite.html')
+def adminsite(request):
+    return render(request, 'admin/manager.html')
     '''
     view function for creating manager,
     '''
+    
+@login_required
+def addEmployee(request):
     if request.method=='POST':
         form=AddEmployeeForm(request.POST)
         if form.is_valid():
             form.save()
             username=form.cleaned_data.get('username')
             useremail=form.cleaned_data.get('email')
-            createdAgent=User.objects.filter(email=useremail).first()
-            createdAgent.profile.is_staff=True
-            createdAgent.profile.is_employee=False
-            createdAgent.save()
+            createdEmployee=User.objects.filter(email=useremail).first()
+            createdEmployee.profile.is_staff=False
+            createdEmployee.profile.is_employee=True
+            createdEmployee.save()
             messages.success(request,f'Account for {username} created!')
             return redirect('login')
         else:
             form=AddEmployeeForm()
             return render(request, 'admin/add_employee.html', {'form': form})
 
+# getting user profile forr the loged in User
+
+def user_profile(request):
+    """Displays information unique to the logged-in user."""
+
+    user = authenticate(username='superuserusername', password='sueruserpassword')
+    login(request, user)
+
+    return render(request, 'user/profile.html',
+           context_instance=RequestContext(request))
