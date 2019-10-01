@@ -10,30 +10,34 @@ from PIL import Image
 
 class EmploymentTerm(models.Model):
   EMPLOYMENT_TERMS = (
-    ('PERMANENT', 'Permanent'),
-    ('PARTTIME', 'Parttime'),
-    ('PROBATIONARY', 'Probationary'),
+    ('PERMANENT', 'PERMANENT'),
+    ('PARTTIME', 'PARTTIME'),
+    ('PROBATIONARY', 'PROBATIONARY'),
     )
   Employment_Terms = models.CharField(max_length=20, choices=EMPLOYMENT_TERMS, default='probationary')
   def __str__(self):
     return self.Employment_Terms
 
-
 class Role(models.Model):
+
+  MANAGER = 'MANAGER'
+  EMPLOYEE = 'EMPLOYEE'
+
   ROLES = (
-    ('EMPLOYEE', 'employee'),
-    ('MANAGER', 'manager'),
+    (EMPLOYEE, '0. EMPLOYEE'),
+    (MANAGER, '1. MANAGER'),
     )
-  role = models.CharField(max_length=20, choices=ROLES, default='employee')
+
+  role = models.CharField(max_length=30,choices=ROLES, null=True)
   def __str__(self):
     return self.role
 
 class LeaveType(models.Model):
   LEAVE_CHOICES = (
-    ('EXPECTANCY', 'Expectancy'),
-    ('ANNUAL_LEAVE', 'annual'),
-    ('MILITARY_LEAVE', 'military'),
-    ('EDUCATION_LEAVE', 'education'),
+    ('EXPECTANCY', 'EXPECTANCY'),
+    ('ANNUAL_LEAVE', 'ANNUAL_LEAVE'),
+    ('MILITARY_LEAVE', 'MILITARY_LEAVE'),
+    ('EDUCATION_LEAVE', 'EDUCATION_LEAVE'),
     )
   Leave_Types = models.CharField(max_length=20, choices=LEAVE_CHOICES, default='annual')
 
@@ -52,10 +56,7 @@ class LeaveStatus(models.Model):
 
 class Department(models.Model):
     department_name = models.CharField(max_length=30, default = 'Service')
-    head_of_department = models.ForeignKey(User, on_delete=models.CASCADE,
-                                        related_name='head_of_department', default=1)
-                                        
-
+                                       
     def __str__(self):
         return f'{self.department_name} Department'
 

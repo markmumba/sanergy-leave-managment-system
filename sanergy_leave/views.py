@@ -9,7 +9,7 @@ from django.shortcuts import redirect, render
 from django.template import RequestContext
 
 from users.models import Profile
-
+from sanergy_leave.models import Role
 from .forms import AddEmployeeForm, LeaveForm
 from .models import Leave
 
@@ -24,8 +24,10 @@ def apply_leave(request):
     
     current_user = request.user
     if current_user.is_superuser == True:
+
         return render(request, 'admin/hr.html')
-    elif current_user.profile.is_staff == True:
+    elif current_user.profile.role.id==1:
+
         return render(request, 'admin/manager.html')
     else:
         requested_days = 0
@@ -41,13 +43,12 @@ def apply_leave(request):
                 leave.emp_id=current_user.id
                 leave.save()
 
-                return redirect('applyform')
+                return redirect('sanergy_leave.apply_leave')
 
             else:
                 form = LeaveForm()
 
                 leaves = Leave.print_all()
-
                 return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
 
 @login_required
@@ -60,7 +61,6 @@ def adminsite(request):
     '''
     view function for creating manager,
     '''
-    
 @login_required
 def addEmployee(request):
     if request.method=='POST':
