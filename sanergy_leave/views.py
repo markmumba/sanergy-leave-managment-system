@@ -61,21 +61,24 @@ def adminsite(request):
     '''
     view function for creating manager,
     '''
+
 @login_required
 def addEmployee(request):
-    if request.method=='POST':
-        form=AddEmployeeForm(request.POST)
+    if request.method == 'POST':
+        form = AddEmployeeForm(request.POST)
         if form.is_valid():
             form.save()
-            username=form.cleaned_data.get('username')
-            useremail=form.cleaned_data.get('email')
-            createdEmployee=User.objects.filter(email=useremail).first()
-            createdEmployee.profile.is_staff=False
-            createdEmployee.profile.is_employee=True
-            createdEmployee.save()
-            messages.success(request,f'Account for {username} created!')
+            # username = form.cleaned_data.get('username')
+            useremail = form.cleaned_data.get('email')
+            user = User.objects.filter(email=useremail).first()
+
+            user.profile.is_employee = True
+            user.profile.is_staff = False
+            user.profile.role.role=Role.EMPLOYEE
+            user.save()
+            messages.success(request, f'Your account has been created! You are now able to log in')
             return redirect('login')
-        else:
+    else:
             form=AddEmployeeForm()
             return render(request, 'admin/add_employee.html', {'form': form})
 

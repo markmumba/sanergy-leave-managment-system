@@ -9,7 +9,7 @@ from users.models import Profile
 
 class AddEmployeeForm(UserCreationForm):
     class Meta():
-        model = Profile
+        model = User
         fields = '__all__'
 
 class ManagerSignUpForm(UserCreationForm):
