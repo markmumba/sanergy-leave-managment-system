@@ -76,6 +76,7 @@ def addEmployee(request):
             user.profile.is_staff = False
             user.profile.role.role=Role.EMPLOYEE
             user.save()
+            
             messages.success(request, f'Your account has been created! You are now able to log in')
             return redirect('login')
     else:
