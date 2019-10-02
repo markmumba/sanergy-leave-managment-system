@@ -20,7 +20,6 @@ from .models import Leave
 def homepage(request):
     return render(request, 'sanergytemplates/homepage.html')
 
-
 @login_required
 def addEmployee(request):
     if request.method == 'POST':
@@ -34,18 +33,6 @@ def addEmployee(request):
         form=AddEmployeeForm()
     return render(request, 'admin/add_employee.html', {'form': form})
 
-# getting user profile forr the loged in User
-
-# def user_profile(request):
-#     """Displays information unique to the logged-in user."""
-
-#     user = authenticate(username='superuserusername', password='sueruserpassword')
-#     login(request, user)
-
-#     return render(request, 'user/profile.html',
-#            context_instance=RequestContext(request))
-
-# delete employee
 @login_required(login_url="/login/")
 def employee_delete(request, id=None):
     user = get_object_or_404(User, id=id)
@@ -57,7 +44,6 @@ def employee_delete(request, id=None):
         context['user'] = user
         return render(request, 'admin/delete.html', context)
 
-
 # list all employees
 @login_required(login_url="/login/")
 def employee_list(request):
@@ -66,7 +52,6 @@ def employee_list(request):
     if user.is_employee == True and  user.profile.role.id==1:
         return user
     return redirect (request, 'admin/employee_list.html', user)
-
 
 @login_required
 def apply_leave(request):
