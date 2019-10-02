@@ -55,9 +55,8 @@ def employee_list(request):
 
 @login_required
 def apply_leave(request):
-    
-    current_user = request.user
-    if current_user.is_superuser == True:
+        
+        current_user = request.user
 
         return render(request, 'admin/hr.html')
     elif current_user.profile.is_staff==True:
@@ -80,8 +79,21 @@ def apply_leave(request):
                 return redirect('sanergy_leave.apply_leave')
 
         else:
-            
-            form = LeaveForm()
+
+            requested_days = 0
+            if request.method == 'POST':
+                form = LeaveForm(request.POST, request.FILES)
+                if form.is_valid():
+                    leave = form.save(commit=False)
+                    leave.user = current_user
+                    leave.emp_id=current_user.id
+                    leave.save()
+                    
+                    return redirect('apply_leave')
+
+            else:
+                
+                form = LeaveForm()
 
         leaves = Leave.print_all()
         return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
@@ -89,9 +101,5 @@ def apply_leave(request):
 @login_required
 def managersite(request):
     employees=Profile.objects.filter(is_employee=True).all()
-    
-    return render(request, 'admin/manager.html',{'employees':employees})
-
-@login_required
-def adminsite(request):
-    return render(request, 'admin/manager.html')
+    leaves = Leave.print_all()
+    return render(request, 'admin/manager.html',{'employees':employees , "leavess": leaves})
