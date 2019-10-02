@@ -52,4 +52,4 @@ class LeaveForm(forms.ModelForm):
             'Leave_Type':forms.Select(choices=leave_choices)
         }
 
-        exclude=['empLeave_req_id','emp_id','emp_fullname']
+        exclude=['empLeave_req_id','emp_id','emp_fullname','user','leave_status']

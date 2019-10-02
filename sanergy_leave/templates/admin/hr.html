@@ -1,10 +1,8 @@
 {% extends "sanergytemplates/base.html" %}
 {% load crispy_forms_tags %}
 {% load bootstrap4 %}
+{% load static %}
 {% block content %}
-<h1>This is management</h1>
-<a href="{% url 'addEmployee' %}", class="btn btn-danger" >Add Employee</a>
-
 
 <!DOCTYPE html>
 <html>
@@ -90,10 +88,6 @@
                     to help out in the house</td>
                 
                 <td> 30 days </td>
-               
-                <td><button type="button" class="btn btn-success"> Accept </button></td>
-                <td><button type="button" class="btn btn-danger">Decline</button></td>
-
             </tr>
 
         </table>
