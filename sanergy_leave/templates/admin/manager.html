@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> HR Site</title>
+    <title> Manager Site</title>
     {{form.media}}
 
     {% block styles %}
@@ -70,10 +70,11 @@
 
                 <!-- <th> Leave Type</th> -->
             </tr>
+            {% for emp in employees %}
             <tr style="font-family: 'Be Vietnam', sans-serif; font-size:21px; font-weight:500; text-align: center;">
-
-                <td>Markian</td>
-                <td> Paternity Leave</td>
+               
+                <td>{{emp.user.username}}</td>
+                <td> {{}}</td>
                 <td> 30 days </td>
                 <td> 30/09/2019 </td>
                 <td> 9/10/2019 </td>
@@ -84,6 +85,7 @@
                 <td><button type="button" class="btn btn-danger">Decline</button></td>
 
             </tr>
+            {% endfor %}
 
         </table>
     </div>
