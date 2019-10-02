@@ -96,6 +96,8 @@
                         <th>Employee </th>
                         <th>Type</th>
                         <th>Requested Days</th>
+                        <th>Begin Date</th>
+                        <th>End Date</th>
                         <th>Status </th>
                       
                         <!-- <th> Leave Type</th> -->
@@ -104,9 +106,11 @@
                     {% for leave in leavess %}
                     <tr>
 
-                        <td>{{leave.emp_fullname}}</td>
+                        <td>{{leave.user.username}}</td>
                         <td>{{leave.Leave_Type}}</td>
-                        <td>{{leave.requested_days}}</td>
+                        <td>{{leave.Begin_Date}}</td>
+                        <td>{{leave.End_Date}}</td>
+                        <td>{{leave.Requested_Days}}</td>
                         <td>{{leave.Leave_Status}}</td>
 
                     </tr>

@@ -35,7 +35,7 @@
         border-radius: 25px;
     }
 
-    td,
+    
     th {
         border: 1px solid #dddddd;
         text-align: left;
@@ -55,7 +55,47 @@
 </style>
 
 <body>
-    <div class="admin" style="padding-top: 100px; padding-left:30px;padding-right: 30px;">
+        <h1>THIS IS MANAGER</h1>
+        <a href="{% url 'addEmployee' %}", class="btn btn-danger" >Add Employee</a>
+
+        <table>
+                <tr>
+                    <th>Employee </th>
+                    <th>Type</th>
+                    <th>Requested Days</th>
+                    <th>Begin Date</th>
+                    <th>End Date</th>
+                    <th>Status </th>
+                  
+                    <!-- <th> Leave Type</th> -->
+
+                </tr>
+                {% for leave in leavess %}
+                <tr>
+
+                    <td>{{leave.user.username}}</td>
+                    <td>{{leave.Leave_Type}}</td>
+                    <td>{{leave.Begin_Date}}</td>
+                    <td>{{leave.End_Date}}</td>
+                    <td>{{leave.Requested_Days}}</td>
+                    <td>{{leave.Leave_Status}}</td>
+
+                </tr>
+                {% endfor%}
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <!-- <div class="admin" style="padding-top: 100px; padding-left:30px;padding-right: 30px;">
         <h1>THIS IS MANAGER</h1>
         <a href="{% url 'addEmployee' %}", class="btn btn-danger" >Add Employee</a>
         <td>  </td>
@@ -68,27 +108,24 @@
                 <th>Comment</th>
                 <th>Requested Days</th>
 
-                <!-- <th> Leave Type</th> -->
             </tr>
             {% for emp in employees %}
             <tr style="font-family: 'Be Vietnam', sans-serif; font-size:21px; font-weight:500; text-align: center;">
                
                 <td>{{emp.user.username}}</td>
-                <td> {{}}</td>
+                <td> {{emp.user.email}}</td>
                 <td> 30 days </td>
                 <td> 30/09/2019 </td>
                 <td> 9/10/2019 </td>
                 <td> My wife is having a kid and need to be around<br>
                     to help out in the house</td>
 
-                <td><button type="button" class="btn btn-success"> Accept </button></td>
-                <td><button type="button" class="btn btn-danger">Decline</button></td>
-
+              
             </tr>
             {% endfor %}
 
         </table>
-    </div>
+    </div> -->
 
     {% block scripts %}
 

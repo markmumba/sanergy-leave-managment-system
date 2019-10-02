@@ -89,6 +89,7 @@ def apply_leave(request):
 @login_required
 def managersite(request):
     employees=Profile.objects.filter(is_employee=True).all()
+    
     return render(request, 'admin/manager.html',{'employees':employees})
 
 @login_required

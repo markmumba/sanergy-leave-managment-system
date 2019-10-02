@@ -1,7 +1,108 @@
 {% extends "sanergytemplates/base.html" %}
 {% load crispy_forms_tags %}
+{% load bootstrap4 %}
+{% load static %}
 {% block content %}
-<h1>This is management</h1>
-<a href="{% url 'addEmployee' %}", class="btn btn-danger" >Add Employee</a>
 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> HR Site</title>
+    {{form.media}}
+
+    {% block styles %}
+
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+
+
+    {% endblock %}
+
+</head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border-radius: 25px;
+    }
+
+
+    th {
+        border: 1px solid #ddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #ddd;
+    }
+
+    #id_Leave_Type {
+
+        height: 50px;
+        border-radius: 25px;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="addingemploye" style="float: right; padding-top: 40px;  ">
+       
+        <img src="https://image.flaticon.com/icons/svg/265/265674.svg"><a href="{% url 'addEmployee' %}" , class="btn btn-primary">Add Employee</a>
+    </div>
+    <div class="admin" style="padding-top: 50px; padding-left:30px;padding-right: 30px;">
+
+
+        <td> </td>
+        <table>
+            <tr style="font-size: 40px; text-align: center; font-family: 'PT Sans', sans-serif;">
+                <th>Employee </th>
+                <th>Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Comment</th>
+                <th>Requested Days</th>
+
+                <!-- <th> Leave Type</th> -->
+            </tr>
+            <tr style="font-family: 'Be Vietnam', sans-serif; font-size:21px; font-weight:500; text-align: center;">
+
+                <td>Markian</td>
+                <td> Paternity Leave</td>
+               
+                <td> 30/09/2019 </td>
+                <td> 9/10/2019 </td>
+                <td> My wife is having a kid and need to be around<br>
+                    to help out in the house</td>
+                
+                <td> 30 days </td>
+            </tr>
+
+        </table>
+    </div>
+
+    {% block scripts %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    </script>
+    {% bootstrap_javascript %}
+
+
+</body>
+
+</html>
+{% endblock %}
 {% endblock %}
