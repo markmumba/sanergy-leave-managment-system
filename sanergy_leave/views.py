@@ -83,16 +83,12 @@ def apply_leave(request):
         if request.method == 'POST':
             form = LeaveForm(request.POST, request.FILES)
             if form.is_valid():
-                start_date = form.cleaned_data['Begin_Date']
-                end_date = form.cleaned_data['End_Date']
-                delta = end_date-start_date
-                requested_days = delta.days
                 leave = form.save(commit=False)
-                leave.username = current_user
+                leave.user = current_user
                 leave.emp_id=current_user.id
                 leave.save()
 
-                return redirect('sanergy_leave.apply_leave')
+                return redirect('apply_leave')
 
         else:
             
@@ -104,6 +100,7 @@ def apply_leave(request):
 @login_required
 def managersite(request):
     employees=Profile.objects.filter(is_employee=True).all()
+    
     return render(request, 'admin/manager.html',{'employees':employees})
 
 @login_required
