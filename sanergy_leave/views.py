@@ -7,12 +7,13 @@ from django.contrib.auth.models import User
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.template import RequestContext
-
 from users.models import Profile
 from sanergy_leave.models import Role
 from .forms import AddEmployeeForm, LeaveForm
 from .models import Leave
-
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import MerchSerializer
 # Create your views here.
 
 
@@ -93,3 +94,11 @@ def user_profile(request):
 
     return render(request, 'user/profile.html',
            context_instance=RequestContext(request))
+
+
+
+class LeaveList(APIView):
+    def get(self, request, format=None):
+        all_leaves=Leave.objects.all()
+        serializers = LeaveSerializer(all_leaves , many=True)
+        return Response(serializers.data)
