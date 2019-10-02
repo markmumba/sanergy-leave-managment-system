@@ -13,9 +13,7 @@ from users.models import Profile
 
 from .forms import AddEmployeeForm, LeaveForm
 from .models import Leave
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from .serializer import MerchSerializer
+
 # Create your views here.
 
 
