@@ -20,10 +20,12 @@ class EmploymentTerm(models.Model):
 
 class LeaveType(models.Model):
   LEAVE_CHOICES = (
-    ('EXPECTANCY', 'EXPECTANCY'),
-    ('ANNUAL_LEAVE', 'ANNUAL_LEAVE'),
-    ('MILITARY_LEAVE', 'MILITARY_LEAVE'),
-    ('EDUCATION_LEAVE', 'EDUCATION_LEAVE'),
+    ('MATERNITY_LEAVE', 'MATERNITY_LEAVE'),
+    ('PATERNITY_LEAVE','PATERNITY_LEAVE'),
+    ('ANNUAL_LEAVE','ANNUAL_LEAVE'),
+    ('COMPASSIONATE_LEAVE','COMPASSIONATE_LEAVE'),
+    ('SICK_LEAVE','SICK_LEAVE'),
+    ('STUDY_LEAVE', 'STUDY_LEAVE'),
     )
   Leave_Types = models.CharField(max_length=20, choices=LEAVE_CHOICES, default='annual')
 
@@ -60,7 +62,7 @@ class Leave(models.Model):
     leave_issuer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leave_issuer', null=True)
     Begin_Date = models.DateField(help_text='Leave begin date')
     End_Date = models.DateField(help_text='Leave end date')
-    Requested_Days = models.PositiveIntegerField(default=5,help_text='Total no of requested leave days')
+    Requested_Days = models.PositiveIntegerField(default=0,help_text='Total no of requested leave days')
     leave_status= models.IntegerField(choices=Statuses,default=1)
     Comments = models.CharField(max_length=500, null=True)
 
@@ -71,14 +73,9 @@ class Leave(models.Model):
         return '%s %s' % (self.leave_id, self.leave_issuer)
 
     @classmethod
-    def print_all(cls):
+    def print_all(cls, pk=id):
         leave = Leave.objects.all()
         return leave
-
-    @classmethod
-    def get_all_leaves(cls):
-        all_leaves = cls.objects.all()
-        return all_leaves
 
     @classmethod
     def get_single_user_notice(cls,owner):

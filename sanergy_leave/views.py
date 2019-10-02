@@ -34,18 +34,6 @@ def addEmployee(request):
         form=AddEmployeeForm()
     return render(request, 'admin/add_employee.html', {'form': form})
 
-# getting user profile forr the loged in User
-
-# def user_profile(request):
-#     """Displays information unique to the logged-in user."""
-
-#     user = authenticate(username='superuserusername', password='sueruserpassword')
-#     login(request, user)
-
-#     return render(request, 'user/profile.html',
-#            context_instance=RequestContext(request))
-
-# delete employee
 @login_required(login_url="/login/")
 def employee_delete(request, id=None):
     user = get_object_or_404(User, id=id)
@@ -70,33 +58,32 @@ def employee_list(request):
 
 @login_required
 def apply_leave(request):
-    
-    current_user = request.user
-    if current_user.is_superuser == True:
+        
+        current_user = request.user
 
-        return render(request, 'admin/hr.html')
-    elif current_user.profile.is_staff==True:
+        if current_user.is_superuser == True:
+            return redirect(managersite)
 
-        return redirect(managersite)
-    else:
-        requested_days = 0
-        if request.method == 'POST':
-            form = LeaveForm(request.POST, request.FILES)
-            if form.is_valid():
-                start_date = form.cleaned_data['Begin_Date']
-                end_date = form.cleaned_data['End_Date']
-                delta = end_date-start_date
-                requested_days = delta.days
-                leave = form.save(commit=False)
-                leave.username = current_user
-                leave.emp_id=current_user.id
-                leave.save()
-
-                return redirect('sanergy_leave.apply_leave')
+            # return render(request, 'admin/hr.html')
+        elif current_user.profile.is_staff==True:
+            return redirect(managersite)
 
         else:
-            
-            form = LeaveForm()
+
+            requested_days = 0
+            if request.method == 'POST':
+                form = LeaveForm(request.POST, request.FILES)
+                if form.is_valid():
+                    leave = form.save(commit=False)
+                    leave.user = current_user
+                    leave.emp_id=current_user.id
+                    leave.save()
+                    
+                    return redirect('apply_leave')
+
+            else:
+                
+                form = LeaveForm()
 
         leaves = Leave.print_all()
         return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
@@ -104,8 +91,5 @@ def apply_leave(request):
 @login_required
 def managersite(request):
     employees=Profile.objects.filter(is_employee=True).all()
-    return render(request, 'admin/manager.html',{'employees':employees})
-
-@login_required
-def adminsite(request):
-    return render(request, 'admin/manager.html')
+    leaves = Leave.print_all()
+    return render(request, 'admin/manager.html',{'employees':employees , "leavess": leaves})
