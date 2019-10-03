@@ -17,10 +17,8 @@ from .email import  *
 
 # Create your views here.
 
-
 def homepage(request):
     return render(request, 'sanergytemplates/homepage.html')
-
 
 @login_required
 def addEmployee(request):
