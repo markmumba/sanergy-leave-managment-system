@@ -99,7 +99,7 @@ def apply_leave(request):
 
 
 @login_required
-def managersite(request,pk):
+def managersite(request):
     employees=Profile.objects.filter(is_employee=True).all()
     leaves = Leave.print_all()
     return render(request, 'admin/manager.html',{'employees':employees , "leavess": leaves})
@@ -114,8 +114,6 @@ def accept_leave(request,pk):
     leave.save()
     status_approval_email(name,email)
     messages.success(request,'Leave Approval notification sent')
-
-
 
     return redirect('managersite')
 
