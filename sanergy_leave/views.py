@@ -28,9 +28,10 @@ def addEmployee(request):
         form = AddEmployeeForm(request.POST)
         if form.is_valid():
             name=form.cleaned_data['username']
-            email = form.cleaned_data['email'] 
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password'] 
             form.save()
-            welcome_email(name,email)
+            welcome_email(name,email,password)
             messages.success(request,'Employee added succesfully')
             return redirect(managersite)
     else:
@@ -80,7 +81,7 @@ def apply_leave(request):
             return redirect(managersite)
 
             # return render(request, 'admin/hr.html')
-        elif current_user.profile.is_staff==True:
+        elif current_user.is_staff==True:
             return redirect(managersite)
 
         else:

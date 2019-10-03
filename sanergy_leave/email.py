@@ -6,8 +6,8 @@ def welcome_email(name,receiver):
     subject ='link to your to the lms'
     sender = 'sprovider549@gmail.com'
 
-    text_content = render_to_string('email/welcome.txt')
-    html_content = render_to_string('email/welcome.html')
+    text_content = render_to_string('email/welcome.txt',{"name":name,"password":password})
+    html_content = render_to_string('email/welcome.html',{"name":name,"password":password})
 
     msg = EmailMultiAlternatives(subject,text_content,sender,[receiver])
     msg.attach_alternative(html_content,'text/html')
