@@ -58,6 +58,7 @@ ROOT_URLCONF = 'sanergy.urls'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = ('/')#user is taken home after login in
 NOTIFICATIONS_SOFT_DELETE=True
+LOGIN_REDIRECT_URL=('/')
 
 
 TEMPLATES = [

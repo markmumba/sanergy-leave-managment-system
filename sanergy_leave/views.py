@@ -14,6 +14,7 @@ from users.models import Profile
 from .forms import AddEmployeeForm, LeaveForm
 from .models import Leave
 from .email import  *
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -29,9 +30,9 @@ def addEmployee(request):
         if form.is_valid():
             name=form.cleaned_data['username']
             email = form.cleaned_data['email']
-            password = form.cleaned_data['password'] 
+   
             form.save()
-            welcome_email(name,email,password)
+            welcome_email(name,email)
             messages.success(request,'Employee added succesfully')
             return redirect(managersite)
     else:
@@ -50,6 +51,7 @@ def addEmployee(request):
 #            context_instance=RequestContext(request))
 
 # delete employee
+
 @login_required(login_url="/login/")
 def employee_delete(request, id=None):
     user = get_object_or_404(User, id=id)

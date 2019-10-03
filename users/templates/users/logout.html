@@ -1,9 +1,14 @@
 {% extends "sanergytemplates/base.html" %}
 {% block content %}
-    <h2>Logout Success</h2>
+<a  style="float: left; padding-top:30px;"   class="logo" href="http://www.sanergy.com">
+    <img class="nav-logo" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-white-195.png"
+        width="300px" alt="Sanergy">
+</a>
+    <h2 style="text-align: center;">Logout Success</h2>
     <div class="border-top pt-3">
         <small class="text-muted">
             <a href="{% url 'login' %}">Log In</a>
         </small>
     </div>
+    
 {% endblock content %}

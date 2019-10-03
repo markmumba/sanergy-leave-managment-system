@@ -67,7 +67,7 @@ class Leave(models.Model):
     Comments = models.CharField(max_length=500, null=True)
 
     class Meta:
-        ordering = ('-leave_id',)
+        ordering = ('leave_id',)
 
     def __str__(self):
         return '%s %s' % (self.leave_id, self.leave_issuer)

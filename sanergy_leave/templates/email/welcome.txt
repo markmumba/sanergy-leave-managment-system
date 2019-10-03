@@ -4,7 +4,8 @@
  
     Log in Info
     
-    Name : {{name}}
+    Name : {{name}}<br>
+    
     Password : {{Password}}
 
 
