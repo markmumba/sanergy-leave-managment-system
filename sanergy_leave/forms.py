@@ -6,8 +6,6 @@ from django.db import transaction
 from .models import Leave, Notice
 from users.models import Profile
 
-
-
 leave_choices = [
     
     ('annual leave','Annual leave'),
@@ -17,10 +15,7 @@ leave_choices = [
     ('study leave', 'Study leave'),
   ]
 
-
 class LeaveForm(forms.ModelForm):
-
-  
 
     class Meta:
         model= Leave
@@ -42,10 +37,6 @@ class AddEmployeeForm(UserCreationForm):
 		model = User
 		fields = ['username','email','password1','password2']
 
-# class AddEmployeeForm(UserCreationForm):
-#     class Meta():
-#         model = User
-#         fields = '__all__'
 
 class ManagerSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):

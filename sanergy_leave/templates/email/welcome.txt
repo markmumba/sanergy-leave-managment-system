@@ -1,0 +1,8 @@
+ {{name}} welcome to the lms
+
+ here is the link to the system :
+ 
+    Log in Info
+    
+    Name : {{name}}
+    Password : {{password}}

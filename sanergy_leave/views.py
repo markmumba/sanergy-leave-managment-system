@@ -13,6 +13,7 @@ from users.models import Profile
 
 from .forms import AddEmployeeForm, LeaveForm
 from .models import Leave
+from .email import  *
 
 # Create your views here.
 
@@ -26,13 +27,23 @@ def addEmployee(request):
     if request.method == 'POST':
         form = AddEmployeeForm(request.POST)
         if form.is_valid():
-            form.save()
             
+            name=form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password1') 
+            form.save()
+
+            welcome_email(name,email, password)
+
             messages.success(request,'Employee added succesfully')
-            return redirect(managersite)
+            return redirect('managersite')
+
     else:
+
         form=AddEmployeeForm()
+
     return render(request, 'admin/add_employee.html', {'form': form})
+
 
 @login_required(login_url="/login/")
 def employee_delete(request, id=None):
@@ -58,12 +69,13 @@ def employee_list(request):
 
 @login_required
 def apply_leave(request):
-
+        
     current_user = request.user
 
     if current_user.is_superuser == True:
         return redirect(managersite)
 
+        # return render(request, 'admin/hr.html')
     elif current_user.is_staff==True:
         return redirect(managersite)
 
@@ -77,11 +89,11 @@ def apply_leave(request):
                 leave.user = current_user
                 leave.emp_id=current_user.id
                 leave.save()
-
+                
                 return redirect('apply_leave')
 
         else:
-
+            
             form = LeaveForm()
 
     leaves = Leave.print_all()
@@ -100,8 +112,9 @@ def accept_leave(request,pk):
 
     name=leave.user.username
     email =leave.user.email
-    welcome_email(name,email)
     leave.save()
+    status_approval_email(name,email)
+    messages.success(request,'Leave Approval notification sent')
 
     return redirect('managersite')
 
@@ -113,8 +126,8 @@ def decline_leave(request,pk):
 
     name=leave.user.username
     email =leave.user.email
-    welcome_email(name,email)
     leave.save()
-
+    status_declined_email(name,email)
+    messages.success(request,'Leave Decline notification sent')
 
     return redirect('managersite')
