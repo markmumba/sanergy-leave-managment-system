@@ -13,9 +13,9 @@ from users.models import Profile
 
 from .forms import AddEmployeeForm, LeaveForm
 from .models import Leave
+from .email import  *
 
 # Create your views here.
-
 
 def homepage(request):
     return render(request, 'sanergytemplates/homepage.html')
@@ -25,12 +25,21 @@ def addEmployee(request):
     if request.method == 'POST':
         form = AddEmployeeForm(request.POST)
         if form.is_valid():
-            form.save()
             
+            name=form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password1') 
+            form.save()
+
+            welcome_email(name,email, password)
+
             messages.success(request,'Employee added succesfully')
-            return redirect(managersite)
+            return redirect('managersite')
+
     else:
+
         form=AddEmployeeForm()
+
     return render(request, 'admin/add_employee.html', {'form': form})
 
 
@@ -57,36 +66,36 @@ def employee_list(request):
 
 @login_required
 def apply_leave(request):
-
+        
     current_user = request.user
+
     if current_user.is_superuser == True:
-
-        return render(request, 'admin/hr.html')
-    elif current_user.profile.is_staff==True:
-
         return redirect(managersite)
+
+        # return render(request, 'admin/hr.html')
+    elif current_user.is_staff==True:
+        return redirect(managersite)
+
     else:
+
         requested_days = 0
         if request.method == 'POST':
             form = LeaveForm(request.POST, request.FILES)
             if form.is_valid():
-                start_date = form.cleaned_data['Begin_Date']
-                end_date = form.cleaned_data['End_Date']
-                delta = end_date-start_date
-                requested_days = delta.days
                 leave = form.save(commit=False)
-                leave.username = current_user
+                leave.user = current_user
                 leave.emp_id=current_user.id
                 leave.save()
-
-                return redirect('sanergy_leave.apply_leave')
+                
+                return redirect('apply_leave')
 
         else:
-
+            
             form = LeaveForm()
 
-        leaves = Leave.print_all()
-        return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
+    leaves = Leave.print_all()
+    return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
+
 
 
 @login_required
@@ -94,3 +103,31 @@ def managersite(request):
     employees=Profile.objects.filter(is_employee=True).all()
     leaves = Leave.print_all()
     return render(request, 'admin/manager.html',{'employees':employees , "leavess": leaves})
+
+@login_required
+def accept_leave(request,pk):
+    leave=Leave.objects.get(pk=pk)
+    leave.leave_status=Leave.Approved
+
+    name=leave.user.username
+    email =leave.user.email
+    leave.save()
+    status_approval_email(name,email)
+    messages.success(request,'Leave Approval notification sent')
+
+    return redirect('managersite')
+
+
+@login_required
+def decline_leave(request,pk):
+    leave=Leave.objects.get(pk=pk)
+    leave.leave_status=Leave.Declined
+
+    name=leave.user.username
+    email =leave.user.email
+    leave.save()
+    status_declined_email(name,email)
+    messages.success(request,'Leave Decline notification sent')
+
+    return redirect('managersite')
+

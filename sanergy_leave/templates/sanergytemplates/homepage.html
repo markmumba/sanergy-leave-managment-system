@@ -48,13 +48,32 @@ h1{
 <div class="homepage"
     style="background: url(https://images.unsplash.com/photo-1519687229700-7a7cb86e7aa0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80) center center no-repeat; background-size:cover; height: 1000px; width: 100%;">
     <div class="header-content text-md-center">
+
+            <div> 
+                    {% if not status %} 
+                        <a href="/gmailAuthenticate" onclick="gmailAuthenticate()" title="Google">Google</a> 
+                    {% else %} 
+                        <p>Your are verified</p> 
+                    {% endif %} 
+                </div> 
     
    <h1 class="animated fadeInUp delay-1s">WELCOME TO LEAVE MANAGMENT SYSTEM</h1>
-   <p class="animated fadeInUp delay-2s ">A portal for all employees to apply for leave's</p>
-   <br>
-   <br>
+
+   {% if user.is_authenticated %}
+      <p>Logged as {{ user.username }}</p>
+      <p class="animated fadeInUp delay-2s ">A portal for all employees to apply for leave's</p>
+      <br>
+      <br>
+     
+      <a href="{% url 'apply_leave' %}" class="btn btn-primary btn-lg animated fadeInUp delay-3s" style="color: black;">Get Started
+           </a>
+      <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+      
+    {% else %}
+      <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+       Google Login
+      </a>
+    {% endif %}
   
-   <a href="{% url 'apply_leave' %}" class="btn btn-primary btn-lg animated fadeInUp delay-3s" style="color: black;">Get Started
-        </a>
     </div>
 </div>
