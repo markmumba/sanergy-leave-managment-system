@@ -97,8 +97,9 @@ def apply_leave(request):
     leaves = Leave.print_all()
     return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
 
+
 @login_required
-def managersite(request):
+def managersite(request,pk):
     employees=Profile.objects.filter(is_employee=True).all()
     leaves = Leave.print_all()
     return render(request, 'admin/manager.html',{'employees':employees , "leavess": leaves})
@@ -113,6 +114,8 @@ def accept_leave(request,pk):
     leave.save()
     status_approval_email(name,email)
     messages.success(request,'Leave Approval notification sent')
+
+
 
     return redirect('managersite')
 
@@ -129,3 +132,4 @@ def decline_leave(request,pk):
     messages.success(request,'Leave Decline notification sent')
 
     return redirect('managersite')
+
