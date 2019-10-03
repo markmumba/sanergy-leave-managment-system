@@ -64,7 +64,6 @@ def employee_list(request):
         return user
     return redirect (request, 'admin/employee_list.html', user)
 
-
 @login_required
 def apply_leave(request):
         
@@ -96,6 +95,7 @@ def apply_leave(request):
 
     leaves = Leave.print_all()
     return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
+
 
 
 @login_required
