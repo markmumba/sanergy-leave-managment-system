@@ -149,18 +149,17 @@ EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-# socoial 
+# socoial auth
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'INSERT_PROVIDED_KEY_HERE'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'INSERT_PROVIDED_SECRET_HERE'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1026629942419-qokhhup918dhbnmjfo21u5d2gdi9can3.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'qEQJSXwqbF0LiYIr5KVx2GKR'
 
 LOGIN_URL = '/auth/login/google-oauth2/'
-
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 

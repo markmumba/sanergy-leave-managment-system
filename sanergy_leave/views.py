@@ -58,13 +58,13 @@ def employee_list(request):
 
 @login_required
 def apply_leave(request):
-        
+
     current_user = request.user
 
     if current_user.is_superuser == True:
-        return render(request, 'admin/hr.html')
+        return redirect(managersite)
 
-    elif current_user.profile.is_staff==True:
+    elif current_user.is_staff==True:
         return redirect(managersite)
 
     else:
@@ -77,11 +77,11 @@ def apply_leave(request):
                 leave.user = current_user
                 leave.emp_id=current_user.id
                 leave.save()
-                
+
                 return redirect('apply_leave')
 
         else:
-            
+
             form = LeaveForm()
 
     leaves = Leave.print_all()
