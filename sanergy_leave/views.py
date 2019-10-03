@@ -13,6 +13,7 @@ from users.models import Profile
 
 from .forms import AddEmployeeForm, LeaveForm
 from .models import Leave
+from .email import  *
 
 # Create your views here.
 
@@ -26,8 +27,10 @@ def addEmployee(request):
     if request.method == 'POST':
         form = AddEmployeeForm(request.POST)
         if form.is_valid():
+            name=form.cleaned_data['username']
+            email = form.cleaned_data['email'] 
             form.save()
-            
+            welcome_email(name,email)
             messages.success(request,'Employee added succesfully')
             return redirect(managersite)
     else:
@@ -105,3 +108,4 @@ def managersite(request):
     employees=Profile.objects.filter(is_employee=True).all()
     leaves = Leave.print_all()
     return render(request, 'admin/manager.html',{'employees':employees , "leavess": leaves})
+
