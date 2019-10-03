@@ -83,8 +83,8 @@
                 <td>{{leave.Requested_Days}}</td>
                 <td>{{leave.Comments}}</td>
                 <td>{{leave.get_leave_status_display}}</td>
-                <td> <button type="button" class="btn btn-success">Accept</button></td>
-                <td><button type="button" class="btn btn-danger">Decline</button></td>
+                <td> <a  href="{% url 'accept_leave' leave.pk %}" class="btn btn-success">Accept</a></td>
+                <td> <a  href="{% url 'decline_leave' leave.pk %}" class="btn btn-danger">Decline</a></td>
 
             </tr>
             {% endfor%}

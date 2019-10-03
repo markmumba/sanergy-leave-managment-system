@@ -93,3 +93,28 @@ def managersite(request):
     leaves = Leave.print_all()
     return render(request, 'admin/manager.html',{'employees':employees , "leavess": leaves})
 
+@login_required
+def accept_leave(request,pk):
+    leave=Leave.objects.get(pk=pk)
+    leave.leave_status=Leave.Approved
+
+    name=leave.user.username
+    email =leave.user.email
+    welcome_email(name,email)
+    leave.save()
+
+    return redirect('managersite')
+
+
+@login_required
+def decline_leave(request,pk):
+    leave=Leave.objects.get(pk=pk)
+    leave.leave_status=Leave.Declined
+
+    name=leave.user.username
+    email =leave.user.email
+    welcome_email(name,email)
+    leave.save()
+
+
+    return redirect('managersite')
