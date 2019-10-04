@@ -57,7 +57,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'sanergy.urls'
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = ('/')#user is taken home after login in
+LOGIN_REDIRECT_URL = ('apply_leave')#user is taken home after login in
 NOTIFICATIONS_SOFT_DELETE=True
 
 
@@ -90,8 +90,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'sanergy',
-        'USER':'moringa',
-        'PASSWORD':'joe'
+        'USER':'mark',
+        'PASSWORD':'123',
     }
 }
 
@@ -160,7 +160,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1026629942419-qokhhup918dhbnmjfo21u5d2gdi9can3.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'qEQJSXwqbF0LiYIr5KVx2GKR'
 
 LOGIN_URL = '/auth/login/google-oauth2/'
-LOGIN_REDIRECT_URL = '/'
+
 LOGOUT_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
