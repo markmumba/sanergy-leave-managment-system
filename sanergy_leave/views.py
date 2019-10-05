@@ -10,7 +10,7 @@ from django.template import RequestContext
 from django.urls import reverse, reverse_lazy
 
 from users.models import Profile
-
+import datetime
 from .forms import AddEmployeeForm, LeaveForm
 from .models import Leave
 from .email import  *
@@ -18,7 +18,8 @@ from .email import  *
 # Create your views here.
 
 def homepage(request):
-    return render(request, 'sanergytemplates/homepage.html')
+    todays_date = datetime.datetime.now()
+    return render(request, 'sanergytemplates/homepage.html',{'todays_date':todays_date})
 
 @login_required
 def addEmployee(request):
@@ -103,6 +104,7 @@ def managersite(request):
     employees=Profile.objects.filter(is_employee=True).all()
     leaves = Leave.print_all()
     return render(request, 'admin/manager.html',{'employees':employees , "leavess": leaves})
+
 
 @login_required
 def accept_leave(request,pk):
