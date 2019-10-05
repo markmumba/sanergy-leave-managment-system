@@ -160,11 +160,6 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1026629942419-qokhhup918dhbnmjfo21u5d2gdi9can3.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'qEQJSXwqbF0LiYIr5KVx2GKR'
 
 LOGIN_URL = '/auth/login/google-oauth2/'
-<<<<<<< HEAD
-LOGIN_REDIRECT_URL = 'apply_leave'
-=======
-
->>>>>>> ee8fc3fde5a9cfad98606c1a8cf70932c4e57e4a
 LOGOUT_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
