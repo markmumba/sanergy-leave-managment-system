@@ -43,26 +43,25 @@ def addEmployee(request):
     return render(request, 'admin/add_employee.html', {'form': form})
 
 
-@login_required(login_url="/login/")
-def employee_delete(request, id=None):
-    user = get_object_or_404(User, id=id)
-    if request.method == 'POST':
-        user.delete()
-        return HttpResponseRedirect(reverse('employee_list'))
-    else:
-        context = {}
-        context['user'] = user
-        return render(request, 'admin/delete.html', context)
+# @login_required(login_url="/login/")
+# def employee_delete(request, id=None):
+#     user = get_object_or_404(User, id=id)
+#     if request.method == 'POST':
+#         user.delete()
+#         return HttpResponseRedirect(reverse('employee_list'))
+#     else:
+#         context = {}
+#         context['user'] = user
+#         return render(request, 'admin/delete.html', context)
 
 
 # list all employees
+
 @login_required(login_url="/login/")
 def employee_list(request):
-    # user = User.objects.all()
-    user = request.user
-    if user.is_employee == True and  user.profile.role.id==1:
-        return user
-    return redirect (request, 'admin/employee_list.html', user)
+    all_users = User.objects.all()
+  
+    return render (request, 'admin/employee_list.html', all_users)
 
 @login_required
 def apply_leave(request):

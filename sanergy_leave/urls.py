@@ -10,6 +10,7 @@ urlpatterns = [
     path('addEmployee',views.addEmployee , name='addEmployee' ),
     path('accept_leave/<int:pk>/',views.accept_leave,name='accept_leave'),
     path('decline_leave/<int:pk>/',views.decline_leave,name='decline_leave'),
+    path('employee_list/',views.apply_leave, name ='employee_list'),
    
 
     # path(r'table',views.append_to_table,name='table') 
