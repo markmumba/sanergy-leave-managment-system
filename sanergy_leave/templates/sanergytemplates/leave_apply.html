@@ -41,27 +41,27 @@
     #id_Leave_Type{
        
         height: 50px;
-        border-radius: 25px;
+        border-radius: 10px;
         text-align: center;
     }
     #id_Begin_Date{
        
        height: 50px;
-       border-radius: 25px;
+       border-radius: 10px;
    }
    #id_End_Date{
        
        height: 50px;
-       border-radius: 25px;
+       border-radius:10px;
    }
    #id_Requested_Days{
        
        height: 50px;
-       border-radius: 25px;
+       border-radius: 10px;
    }
     #id_Comments{
         height: 100px;
-        border-radius: 25px;
+        border-radius: 10px;
     }
 </style>
 
@@ -69,9 +69,9 @@
 
     <div class="panel panel-default">
         <div class="row">
-            <div class="col-6" style="padding-right: 200px; padding-left:30px; padding-top: 50px;">
+            <div class="animated fadeInUp delay-1s" style=" padding-left:300px; padding-top: 50px;">
                 <div class="card"
-                    style="width: 900px;border-radius: 60px; box-shadow: 0 40px 15px 0 rgba(0, 0, 0, 0.2); height: 700px; font-weight: 600; ">
+                    style="width: 1000px;border-radius: 10px; box-shadow: 0 40px 15px 0 rgba(0, 0, 0, 0.2); height: 800px; font-weight: 600; ">
                     <div class="card-body" style="padding-top: 90px;">
                         <form action="{% url 'apply_leave'%}" method="post" enctype="multipart/form-data"
                             style="height: 50px;">
@@ -90,41 +90,7 @@
             </div>
 
 
-            <div class="col-6 " style="padding-top: 100px; padding-right: 40px; ">
-                <table>
-                    <tr>
-                        <th>Employee </th>
-                        <th>Type</th>
-                      
-                        <th>Begin Date</th>
-                        <th>End Date</th>
-                        <th>Requested Days</th>
-                        <th>Status </th>
-                      
-                        <!-- <th> Leave Type</th> -->
-
-                    </tr>
-                    {% for leave in leavess %}
-                    <tr>
-
-                        <td>{{leave.user.username}}</td>
-                        <td>{{leave.Leave_Type}}</td>
-                       
-                        <td>{{leave.Begin_Date}}</td>
-                        <td>{{leave.End_Date}}</td>
-                        <td>{{leave.Requested_Days}}</td>
-                        <td>{{leave.get_leave_status_display}}</td>
-
-                    </tr>
-                    {% endfor%}
-                </table>
-
-            </div>
-        </div>
-    </div>
-
-
-
+          
 
 
 

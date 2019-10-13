@@ -1,33 +1,16 @@
-{% extends "sanergytemplates/base.html" %}
+{% extends "admin/base.html" %}
 {% load crispy_forms_tags %}
 {% load bootstrap4 %}
 {% block content %}
 <style>
-  #id_username {
 
-    height: 50px;
-    border-radius: 25px;
- 
-  }
-
-  #id_email {
-   
-    height: 50px;
-    border-radius: 25px;
-  }
-
-  #id_password{
-       
-       height: 50px;
-       border-radius: 25px;
-   }
 </style>
 <div class="container" style="padding-top: 100px;">
   <div class="row">
     <div class="col-2"></div>
     <div class="col-4">
       <div class=" card"
-        style="width: 800px;border-radius: 40px; box-shadow: 0 40px 15px 0 rgba(0, 0, 0, 0.2);  font-weight: 600; text-align: center; height: 600px;">
+        style="width: 800px;border-radius: 10px; box-shadow: 0 40px 15px 0 rgba(0, 0, 0, 0.2);  font-weight: 600;  height: 600px;">
         <div class="content-section">
           <div class="card-body" style="text-align: center;">
             <form method="POST">

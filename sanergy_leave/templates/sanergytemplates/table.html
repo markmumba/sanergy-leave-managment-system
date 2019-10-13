@@ -1,0 +1,78 @@
+{% extends "sanergytemplates/base.html" %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block content %}
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'assets/css/demo.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/light-bootstrap-dashboard.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+{% endblock %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border-radius: 25px;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<div class="col " style=" padding-left:300px; padding-top: 50px; ">
+        <table>
+           
+    </div>
+</div>
+</div>
+<div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title" style="text-align: center; font-weight:600; font-size:50px;">Employees on leave </h4>
+                            
+                        </div>
+                        <div class="content table-responsive table-full-width">
+                            <table class="table table-hover table-striped" style="font-size: 17px;">
+                                    <tr>
+                                            <th>Employee </th>
+                                            <th>Begin Date</th>
+                                            <th>End Date</th>
+                                            <th>Status </th>
+                                          
+                                            <!-- <th> Leave Type</th> -->
+                            
+                                        </tr>
+                                        {% for leave in leavess %}
+                                        <tr>
+                            
+                                            <td>{{leave.user.username}}</td>
+                                            <td>{{leave.Begin_Date}}</td>
+                                            <td>{{leave.End_Date}}</td>
+                                            <td>{{leave.get_leave_status_display}}</td>
+                            
+                                        </tr>
+                                        {% endfor%}
+                                    </table>
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+
+{% endblock %}
+

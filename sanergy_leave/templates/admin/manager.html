@@ -1,4 +1,4 @@
-{% extends "sanergytemplates/base.html" %}
+{% extends "admin/base.html" %}
 {% load bootstrap4 %}
 {% load staticfiles %}
 {% block content %}
@@ -23,17 +23,19 @@
     <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:700&display=swap" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+
 
     {% endblock %}
 
 </head>
 <style>
     table {
-        font-family: arial, sans-serif;
+        font-family: 'Nunito', sans-serif;
         border-collapse: collapse;
         width: 100%;
-        border-radius: 25px;
-        font-weight: 900;
+       
+        font-weight: 500;
 
     }
 
@@ -53,26 +55,29 @@
 </style>
 
 <body>
-    <h1 style="text-align: center;"> <img style="height: 60px;" src="https://image.flaticon.com/icons/svg/345/345736.svg"> MANAGEMENT</h1>
-    <div class="addingemploye" style="float: right;   ">
+    <!-- <h1 style="text-align: center;"> <img style="height: 60px;"
+            src="https://image.flaticon.com/icons/svg/345/345736.svg"> MANAGEMENT</h1> -->
+    <!-- <div class="addingemploye" style="float: right;   ">
 
-        <img  style="height: 60px;" src="https://image.flaticon.com/icons/svg/265/265674.svg"><a href="{% url 'addEmployee' %}" ,
-            class="btn btn-primary">Add Employee</a>
-            <img style="height: 60px;" src="https://image.flaticon.com/icons/svg/265/265674.svg"><a href="{% url 'employee_list' %}" ,
-            class="btn btn-primary">Manage Employees</a>
-    </div>
-    <div class="table" style="padding-left: 60px; padding-right: 60px; padding-top: 90px; ">
-        <table>
-            <tr style="font-size: 30px;">
-                <th>Employee </th>
-                <th>Type</th>
-                <th>Requested Days</th>
-                <th>Begin Date</th>
-                <th>End Date</th>
-                <th>Comment</th>
-                <th>Status </th>
+        <img style="height: 60px;" src="https://image.flaticon.com/icons/svg/265/265674.svg"><a
+            href="{% url 'addEmployee' %}" , class="btn btn-primary">Add Employee</a>
+        <img style="height: 60px;" src="https://image.flaticon.com/icons/svg/265/265674.svg"><a
+            href="{% url 'employee_list' %}" , class="btn btn-primary">Manage Employees</a>
+    </div> -->
 
-                <!-- <th> Leave Type</th> -->
+    <div class="leaves" style="padding-left: 300px; padding-top: 100px;  ">
+        <table class="table table-hover table-striped" style="font-size: 15px;">
+            <th>Employee </th>
+            <th>Type</th>
+            <th>Requested Days</th>
+            <th>Begin Date</th>
+            <th>End Date</th>
+            <th>Comment</th>
+            <th>Status </th>
+            <th></th>
+            <th></th>
+
+            <!-- <th> Leave Type</th> -->
 
             </tr>
             {% for leave in leavess %}
@@ -85,13 +90,14 @@
                 <td>{{leave.Requested_Days}}</td>
                 <td>{{leave.Comments}}</td>
                 <td>{{leave.get_leave_status_display}}</td>
-                <td> <a  href="{% url 'accept_leave' leave.pk %}" class="btn btn-success">Accept</a></td>
-                <td> <a  href="{% url 'decline_leave' leave.pk %}" class="btn btn-danger">Decline</a></td>
+                <td> <a href="{% url 'accept_leave' leave.pk %}" class="btn btn-success">Accept</a>
+                </td>
+                <td> <a href="{% url 'decline_leave' leave.pk %}" class="btn btn-danger">Decline</a>
+                </td>
 
             </tr>
             {% endfor%}
         </table>
-
     </div>
 
     {% block scripts %}

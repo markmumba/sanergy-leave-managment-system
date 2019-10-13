@@ -92,10 +92,13 @@ def apply_leave(request):
             
             form = LeaveForm()
 
+   
+    return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, 'requested_days': requested_days})
+
+
+def table (request):
     leaves = Leave.print_all()
-    return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, "leavess": leaves, 'requested_days': requested_days})
-
-
+    return render(request, 'sanergytemplates/table.html',{ "leavess": leaves})
 
 @login_required
 def managersite(request):
