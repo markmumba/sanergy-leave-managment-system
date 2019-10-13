@@ -18,9 +18,13 @@
     overflow-x: hidden;
     padding-top: 20px;
     font-family: 'Nunito', sans-serif;
+    text-align: center;
   
   }
 
+  :root {
+  --mainColor: #ffffff;
+}
   .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -28,13 +32,33 @@
     color: #818181;
     display: block;
     color: white;
-    font-size: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    background:
+     linear-gradient(
+       to right,
+       var(--mainColor) 0%,
+       var(--mainColor) 5px,
+       transparent 5px
+     );
+    background-repeat: repeat-x;
+    background-size: 100%;
 
+  padding-left: 10px;
+  text-decoration: none;
 
   }
   .sidenav a:hover {
-  color: gray;
+  color: black;
   text-decoration: none;
+  background:
+     linear-gradient(
+       to right,
+       var(--mainColor) 0%,
+       var(--mainColor) 5px,
+       transparent
+     );
+
 }
 
   .main {
@@ -107,11 +131,11 @@
   <br>
  
   {% if user.is_authenticated %}
-<a href="{% url 'profile'%}">Profile</a>
-  <a href="{% url 'apply_leave' %}">Leaves</a>
-  <a href="{% url 'addEmployee' %}">Add Employees</a>
-  <a href="{% url 'employee_list' %}">All employees</a>
-  <a href="{% url 'logout' %}">Logout</a>
+<a href="{% url 'profile'%}">PROFILE</a>
+  <a href="{% url 'apply_leave' %}">LEAVES</a>
+  <a href="{% url 'addEmployee' %}">ADD EMPLOYEES</a>
+  <a href="{% url 'employee_list' %}">ALL EMPLOYEES</a>
+  <a href="{% url 'logout' %}">LOGOUT</a>
 
       {% endif %}
 
