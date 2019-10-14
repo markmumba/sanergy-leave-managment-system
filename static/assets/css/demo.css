@@ -47,8 +47,7 @@
     height: 100%;
 }
 
-.fixed-plugin li>a,
-.fixed-plugin .badge {
+.fixed-plugin li>a, .fixed-plugin .badge {
     transition: all .34s;
     -webkit-transition: all .34s;
     -moz-transition: all .34s;
@@ -80,8 +79,7 @@
     padding: 0 10px;
 }
 
-.fixed-plugin .dropdown-menu:after,
-.fixed-plugin .dropdown-menu:before {
+.fixed-plugin .dropdown-menu:after, .fixed-plugin .dropdown-menu:before {
     right: 10px;
     margin-left: auto;
     left: auto;
@@ -95,9 +93,7 @@
     color: #00bbff;
 }
 
-.fixed-plugin .dropdown-menu>.active>a,
-.fixed-plugin .dropdown-menu>.active>a:hover,
-.fixed-plugin .dropdown-menu>.active>a:focus {
+.fixed-plugin .dropdown-menu>.active>a, .fixed-plugin .dropdown-menu>.active>a:hover, .fixed-plugin .dropdown-menu>.active>a:focus {
     color: #777777;
     text-align: center;
 }
@@ -109,8 +105,7 @@
     margin: 0 auto;
 }
 
-.fixed-plugin .dropdown-menu li>a:hover,
-.fixed-plugin .dropdown-menu li>a:focus {
+.fixed-plugin .dropdown-menu li>a:hover, .fixed-plugin .dropdown-menu li>a:focus {
     box-shadow: none;
 }
 
@@ -125,8 +120,7 @@
     width: 23px;
 }
 
-.fixed-plugin .badge.active,
-.fixed-plugin .badge:hover {
+.fixed-plugin .badge.active, .fixed-plugin .badge:hover {
     border-color: #00bbff;
 }
 
@@ -170,9 +164,7 @@
     float: left;
 }
 
-.fixed-plugin li.adjustments-line,
-.fixed-plugin li.header-title,
-.fixed-plugin li.button-container {
+.fixed-plugin li.adjustments-line, .fixed-plugin li.header-title, .fixed-plugin li.button-container {
     width: 100%;
     height: 50px;
     min-height: inherit;
@@ -245,19 +237,16 @@
     padding: 0;
 }
 
-.fixed-plugin .dropdown-menu>li>a.switch-trigger:hover,
-.fixed-plugin .dropdown-menu>li>a.switch-trigger:focus {
+.fixed-plugin .dropdown-menu>li>a.switch-trigger:hover, .fixed-plugin .dropdown-menu>li>a.switch-trigger:focus {
     background-color: transparent;
 }
 
-.fixed-plugin .dropdown-menu>li:hover>a.img-holder,
-.fixed-plugin .dropdown-menu>li:focus>a.img-holder {
+.fixed-plugin .dropdown-menu>li:hover>a.img-holder, .fixed-plugin .dropdown-menu>li:focus>a.img-holder {
     border-color: rgba(0, 187, 255, 0.53);
     ;
 }
 
-.fixed-plugin .dropdown-menu>.active>a.img-holder,
-.fixed-plugin .dropdown-menu>.active>a.img-holder {
+.fixed-plugin .dropdown-menu>.active>a.img-holder, .fixed-plugin .dropdown-menu>.active>a.img-holder {
     border-color: #00bbff;
     background-color: #FFFFFF;
 }
@@ -282,9 +271,7 @@
     margin-right: 2%;
 }
 
-.fixed-plugin .adjustments-line a:hover,
-.fixed-plugin .adjustments-line a:focus,
-.fixed-plugin .adjustments-line a {
+.fixed-plugin .adjustments-line a:hover, .fixed-plugin .adjustments-line a:focus, .fixed-plugin .adjustments-line a {
     color: transparent;
 }
 
@@ -309,8 +296,7 @@
     transform-origin: 0 0;
 }
 
-.fixed-plugin .dropdown-menu:before,
-.fixed-plugin .dropdown-menu:after {
+.fixed-plugin .dropdown-menu:before, .fixed-plugin .dropdown-menu:after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -441,8 +427,7 @@
     text-transform: capitalize;
 }
 
-#buttons .btn,
-#javascriptComponents .btn {
+#buttons .btn, #javascriptComponents .btn {
     margin: 0 0px 10px;
 }
 
@@ -623,8 +608,7 @@
 }
 
 @media (max-width: 768px) {
-    .btn,
-    .btn-morphing {
+    .btn, .btn-morphing {
         margin-bottom: 10px;
     }
     .parallax .motto {
@@ -639,11 +623,7 @@
 
 /*      transitions */
 
-.presentation .front,
-.presentation .front:after,
-.presentation .front .btn,
-.logo-container .logo,
-.logo-container .brand {
+.presentation .front, .presentation .front:after, .presentation .front .btn, .logo-container .logo, .logo-container .brand {
     -webkit-transition: all .2s;
     -moz-transition: all .2s;
     -o-transition: all .2s;
@@ -701,8 +681,7 @@
     margin: 15px 4px 0;
 }
 
-.section-thin,
-.section-notifications {
+.section-thin, .section-notifications {
     padding: 0;
 }
 
@@ -714,8 +693,7 @@
     margin-bottom: 20px;
 }
 
-#navbar .navbar-toggler,
-#menu-dropdown .navbar-toggler {
+#navbar .navbar-toggler, #menu-dropdown .navbar-toggler {
     pointer-events: none;
 }
 
@@ -751,16 +729,14 @@
     margin-top: 30px;
 }
 
-.components-page .wrapper>.header,
-.tutorial-page .wrapper>.header {
+.components-page .wrapper>.header, .tutorial-page .wrapper>.header {
     height: 500px;
     padding-top: 128px;
     background-size: cover;
     background-position: center center;
 }
 
-.components-page .title,
-.tutorial-page .title {
+.components-page .title, .tutorial-page .title {
     color: #FFFFFF;
 }
 
