@@ -32,4 +32,12 @@ def profile(request):
         'p_form': p_form
     }
 
-    return render(request, 'users/profile.html', context)
+    if request.user.is_superuser==True:
+         return render(request, 'users/profiles.html', context)
+    else:
+         return render(request, 'users/profile.html', context)
+
+
+
+
+   
