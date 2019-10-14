@@ -88,13 +88,13 @@ def apply_leave(request):
 
                 name = current_user.username
                 superusers = User.objects.filter(is_superuser=True)
-                
+
                 for user in superusers:
                     leave_request_sent(name,user.email)
    
                 leave.save()
                 
-                return redirect('apply_leave')
+                return redirect('table')
 
         else:
             
