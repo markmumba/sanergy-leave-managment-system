@@ -40,7 +40,7 @@ def addEmployee(request):
 
         form=AddEmployeeForm()
 
-    return render(request, 'admin/add_employee.html', {'form': form})
+    return render(request, 'admins/add_employee.html', {'form': form})
 
 
 # @login_required(login_url="/login/")
@@ -61,7 +61,7 @@ def addEmployee(request):
 def employee_list(request):
     all_users = User.objects.all()
   
-    return render (request, 'admin/employee_list.html', all_users)
+    return render (request, 'admins/employee_list.html', all_users)
 
 @login_required
 def apply_leave(request):
@@ -84,6 +84,14 @@ def apply_leave(request):
                 leave = form.save(commit=False)
                 leave.user = current_user
                 leave.emp_id=current_user.id
+
+
+                name = current_user.username
+                superusers = User.objects.filter(is_superuser=True)
+                
+                for user in superusers:
+                    leave_request_sent(name,user.email)
+   
                 leave.save()
                 
                 return redirect('apply_leave')
@@ -104,7 +112,7 @@ def table (request):
 def managersite(request):
     employees=Profile.objects.filter(is_employee=True).all()
     leaves = Leave.print_all()
-    return render(request, 'admin/manager.html',{'employees':employees , "leavess": leaves})
+    return render(request, 'admins/manager.html',{'employees':employees , "leavess": leaves})
 
 @login_required
 def accept_leave(request,pk):
@@ -136,3 +144,8 @@ def decline_leave(request,pk):
 
     return redirect('managersite')
 
+@login_required(login_url="/login/")
+def employee_list(request):
+    all_users = User.objects.all()
+  
+    return render (request, 'admins/employee_list.html', {'all_users':all_users})

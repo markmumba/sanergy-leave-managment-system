@@ -39,3 +39,13 @@ def status_declined_email(name,receiver):
     msg.attach_alternative(html_content,'text/html')
     msg.send()
 
+def leave_request_sent(name,receiver):
+   subject ='Leave request sent'
+   sender = 'sprovider549@gmail.com'
+
+   text_content = render_to_string('email/request.txt',{"name": name})
+   html_content = render_to_string('email/request.html',{"name":name})
+   
+   msg = EmailMultiAlternatives(subject,text_content,sender,[receiver])
+   msg.attach_alternative(html_content,'text/html')
+   msg.send()
