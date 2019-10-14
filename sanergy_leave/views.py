@@ -108,13 +108,16 @@ def managersite(request):
 
 @login_required
 def accept_leave(request,pk):
+ 
     leave=Leave.objects.get(pk=pk)
     leave.leave_status=Leave.Approved
 
     name=leave.user.username
     email =leave.user.email
+    date = leave.Begin_Date
+    date2 = leave.End_Date
     leave.save()
-    status_approval_email(name,email)
+    status_approval_email(name,email,date,date2)
     messages.success(request,'Leave Approval notification sent')
 
     return redirect('managersite')
