@@ -55,7 +55,6 @@ class Leave(models.Model):
     (Declined, 'Declined'),
     )
 
-
     leave_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner', null=True)
     Leave_Type = models.ForeignKey(LeaveType,on_delete=models.CASCADE)

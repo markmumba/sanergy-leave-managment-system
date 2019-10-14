@@ -1,40 +1,3 @@
-<<<<<<< HEAD
-
-
-  <nav style="color: white;" class="navbar" style="font-size: 25px; font-family: 'Nunito', sans-serif;">
- 
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
-      
-            <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
-          </li>
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="dropdown-item" href="{% url 'profile'%}">{{user.username}}</a>
-          </li>
-        
-          <li class="nav-item">
-            <a class="dropdown-item" href="{% url 'apply_leave' %}">logout</a>
-          </li>
-          {% else %}
-         
-          <li>
-            <a class='btn btn-default' href="{% url 'login' %}">Login</a>
-          </li>
-    
-          {% endif %}
-    
-      </div>
-    
-      </div>
-    </nav>
-
-
-
-
-
-=======
 {% load bootstrap4 %}
 {% load staticfiles %}
 {% block content %}
@@ -154,8 +117,6 @@
   </div>
 </nav> -->
 
-
-
 <div class="sidenav">
   <a class="logo" href="{% url 'homepage' %}">
     <img class="nav-logo" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-white-195.png" width="160px"
@@ -176,10 +137,6 @@
 
       {% endif %}
 
- 
 </div>
 
-
-
 {% endblock %}
->>>>>>> 616445d26fd16f09c91cd0236c29ca6f3705738f
