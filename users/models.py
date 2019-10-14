@@ -9,6 +9,11 @@ from sanergy_leave.models import Department
 
 class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    first_name =models.CharField(max_length=30,null=True)
+    last_name = models.CharField(max_length=30,null=True)
+    Address=  models.CharField(max_length=30,null=True)
+    country = models.CharField(max_length=30,null=True)
+    zip_code = models.IntegerField(null=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     department = models.ForeignKey(Department, on_delete=models.DO_NOTHING,null=True)
     date_of_birth = models.DateField(default=timezone.now)
