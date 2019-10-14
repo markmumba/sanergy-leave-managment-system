@@ -3,55 +3,59 @@
 {% load bootstrap4 %}
 {% block content %}
 <style>
-  #id_username{
-       
-       height: 50px;
-       border-radius: 25px;
-   }
-   #id_password{
-       
-       height: 50px;
-       border-radius: 25px;
-   }
+  #id_username {
+
+    height: 50px;
+    border-radius: 25px;
+  }
+
+  #id_password {
+
+    height: 50px;
+    border-radius: 25px;
+  }
 </style>
 <div class="container" style="padding-top: 200px;">
   <div class="row">
     <div class="col-2"></div>
-    <div class=" card col-6" style="width: 600px;border-radius: 60px; box-shadow: 0 40px 15px 0 rgba(0, 0, 0, 0.2); height: 500px; font-weight: 600; text-align: center;">
-    
-      
-          <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Log In</legend>
-              {% bootstrap_form form %}
-            </fieldset>
-            <div class="form-group">
-              <button class="btn btn-primary" type="submit">Login</button>
-              <br>
-              <br>
-              <br>
-              <p style="font-weight: 700; font-size:20px;">or</p>
-            
+    <div class=" card col-6"
+      style="width: 600px;border-radius: 60px; box-shadow: 0 30px 15px 0 rgba(0, 0, 0, 0.2); height: 500px; font-weight: 600; padding-left: 40px;">
 
-              <div class="content-section">
-                  {% if user.is_authenticated %}
-                  <p>{{ user.username }}</p>
-                  {% else %}
-                  <a class="btn btn-sm" href="{% url 'social:begin' 'google-oauth2' %}">
-                    <p> <img src="https://image.flaticon.com/icons/svg/281/281764.svg"> Sign In</p>
-                  </a>
-                  {% endif %}
-            </div>
-          </form>
-        </div>
-        <div class="border-top pt-3">
 
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4">Log In</legend>
+          {% bootstrap_form form %}
+        </fieldset>
+        <div style="padding-left: 200px;" class="form-group">
+          <button class="btn btn-primary" type="submit">Login</button>
+          <br>
+          <br>
+          <br>
+
+          <p style="font-weight: 700; font-size:20px;">or</p>
+
+
+          <div class="content-section">
+            {% if user.is_authenticated %}
+            <p>{{ user.username }}</p>
+            {% else %}
+            <a class="btn btn-sm" href="{% url 'social:begin' 'google-oauth2' %}">
+              <p> <img src="https://image.flaticon.com/icons/svg/281/281764.svg"> Sign In</p>
+            </a>
+            {% endif %}
+          </div>
         </div>
-      </div>
+      </form>
     </div>
-    <div class="col-2"></div>
+    <div class="border-top pt-3">
+
+    </div>
   </div>
+</div>
+<div class="col-2"></div>
+</div>
 </div>
 
 {% endblock content %}

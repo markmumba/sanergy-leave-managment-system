@@ -1,7 +1,27 @@
 {% extends "sanergytemplates/base.html" %}
 {% load crispy_forms_tags %}
+{% load bootstrap4 %}
+{% load staticfiles %}
 {% block content %}
-<link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC:700&display=swap" rel="stylesheet">
+
+
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'assets/css/demo.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/light-bootstrap-dashboard.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+{% endblock %}
+<style>
+
+.circular---square {
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+}
+</style>
+<!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC:700&display=swap" rel="stylesheet">
 <div class="content-section col-6 col-md-6">
   <div class="media">
     <img style="width: 500px; height: 500px;" class="rounded-circle account-img" src="{{ user.profile.image.url }}">
@@ -23,5 +43,110 @@
       <button class="btn btn-outline-info" type="submit"><a class="navbar-brand">Update</a> </button>
     </div>
   </form>
-</div>
-{% endblock content %}
+</div> -->
+<div class="content">
+  <div class="container-fluid" style="padding-left: 300px; padding-top: 90px;">
+
+    <div class="row">
+     
+      <div class="col-md-8">
+        <div class="card" style="width: 1100px; height:800px; color:black;">
+          <div class="header">
+          </div>
+         
+     
+          <div class="content" style="padding: 30px;">
+
+            
+            <form>
+              <div class="row">
+                <div class="col-md-5">
+                    <div class="image">
+                        <img class="circular---square" src="{{ user.profile.image.url }}" />
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label>Company </label>
+                    <input type="text" class="form-control" style="color: black;" disabled placeholder="Company" value="Sanergy Company">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control"style="color: black;" disabled placeholder="Username" value="{{ user.username }}">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" style="color: black;" disabled placeholder="Email" value=" {{ user.email }}">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control"style="color: black;" placeholder="Name" value="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" style="color: black;" placeholder="Last Name" value="">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" class="form-control" style="color: black;" placeholder="Home Address" value="">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" style="color: black;" placeholder="City" value="">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" class="form-control" style="color: black;" placeholder="Country" value="">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Postal Code</label>
+                    <input type="number" class="form-control" style="color: black;" placeholder="ZIP Code">
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Profile Info</legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit"><a class="navbar-brand">Update</a> </button>
+      </div>
+    </form>
+    {% endblock content %}
