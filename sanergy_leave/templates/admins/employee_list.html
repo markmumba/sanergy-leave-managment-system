@@ -2,64 +2,33 @@
 {% load bootstrap4 %}
 {% load staticfiles %}
 {% block content %}
-​
-{% block styles %}
-{% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/base.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=PT+Sans:700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+ <div style="padding-left: 300px;" class="admin" style="padding-top: 100px; padding-left:30px;padding-right: 30px;">
+        <h1>THIS IS EMPLOYEE MANAGEMENT SIDE</h1>
+        <a href="{% url 'addEmployee' %}", class="btn btn-danger" >Add Employee</a>
+        <td>  </td>
+        <table>
+            <tr style="font-size: 40px; text-align: center; font-family: 'PT Sans', sans-serif;">
+                <th>Employee </th> <br>
+                <th>Email</th> <br>
+                <th>Department</th> <br>
+                <th></th>
 
-<style>
-    table {
-        font-family: 'Nunito', sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-       
-        font-weight: 500;
+            </tr>
+            {% for emp in all_users %}
+            <tr style="font-family: 'Be Vietnam', sans-serif; font-size:21px; font-weight:500; text-align: center;">
 
-    }
+                <td>{{emp.username}}</td>
+                <td> {{emp.email}}</td>
+                <td> {{emp.profile.department}}</td>
 
+                <!-- <td class="btn btn-danger">Delete Employee</a> -->
+                </td>
+                
+            </tr>
+            {% endfor %}
 
-    th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-        height: 100px;
+        </table>
+    </div>
 
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-
-    }
-</style>
-
-
-{% endblock %}
-<div class="leaves" style="padding-left: 300px; padding-top: 100px;  ">
-    <table class="table table-hover table-striped" style="font-size: 15px;">
-        <th>Employee </th>
-        <th>Type</th>
-        
-
-        <!-- <th> Leave Type</th> -->
-
-        </tr>
-        {% for emp in all_users %}
-        <tr>
-            <td>{{emp.username}}</td>
-            <td> {{emp.email}}</td>
-            <td> <a href="http://127.0.0.1:8000/admin/auth/user/" class="btn btn-danger">Delete</a>
-            </td>
-
-        </tr>
-        {% endfor%}
-    </table>
-</div>
-
-{% endblock %}
+{% endblock content %}

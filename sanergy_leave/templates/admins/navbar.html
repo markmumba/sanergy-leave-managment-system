@@ -87,37 +87,8 @@
 </style>
 
 
-
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="font-size: 25px; font-family: 'Nunito', sans-serif;">
-
-  <div style="color: white;" class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-
-      <a class="logo" href="{% url 'homepage' %}">
-        <img class="nav-logo" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-white-195.png"
-          width="200px" alt="Sanergy">
-      </a>
-      {% if user.is_authenticated %}
-      <div class="navbar" style="float: right; padding-left: 1400px;">
-        <li class="nav-item">
-          <a class="dropdown-item" href="{% url 'profile'%}">{{ user.username }}</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
-        </li>
-      </div>
-      {% endif %}
-
-  </div>
-
-  </div>
-</nav> -->
-
-
 
 <div class="sidenav">
   <a class="logo" href="{% url 'homepage' %}">
@@ -139,9 +110,6 @@
 
       {% endif %}
 
- 
 </div>
-
-
 
 {% endblock %}
