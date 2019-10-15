@@ -61,8 +61,6 @@
             <th>End Date</th>
             <th>Comment</th>
             <th>Status </th>
-            <th></th>
-            <th></th>
 
 
             <!-- <th> Leave Type</th> -->
@@ -77,11 +75,8 @@
                 <td>{{leave.Begin_Date}}</td>
                 <td>{{leave.End_Date}}</td>
                 <td>{{leave.Comments}}</td>
+
                 <td>{{leave.get_leave_status_display}}</td>
-                <td> <a href="{% url 'accept_leave' leave.pk %}"  onclick="this.disabled=true" id="buttonid" class="btn btn-success">Accept</a>
-                </td>
-                <td> <a href="{% url 'decline_leave' leave.pk %}" onclick="this.disabled=true" id="buttonid"  class="btn btn-danger">Decline</a>
-                </td>
 
             </tr>
             {% endfor%}

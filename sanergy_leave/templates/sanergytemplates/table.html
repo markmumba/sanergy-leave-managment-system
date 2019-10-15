@@ -42,7 +42,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title" style="text-align: center; font-weight:600; font-size:50px;">Employees on leave </h4>
+                            <h4 class="title" style="text-align: center; font-weight:600; font-size:50px;">Employees Leaves </h4>
                             
                         </div>
                         <div class="content table-responsive table-full-width">
@@ -53,8 +53,7 @@
                                             <th>End Date</th>
                                             <th>Requested Days</th>
                                             <th>Status </th>
-                                            <th></th>
-                                            <th></th>
+                                        
 
                                             <!-- <th> Leave Type</th> -->
                             
@@ -67,10 +66,7 @@
                                             <td>{{leave.End_Date}}</td>
                                             <td>{{leave.Requested_Days }} </td>
                                             <td>{{leave.get_leave_status_display}}</td>
-                                            <td> <a href="{% url 'accept_leave' leave.pk %}"  onclick="this.disabled=true" id="buttonid" class="btn btn-success">Accept</a>
-                                            </td>
-                                            <td> <a href="{% url 'decline_leave' leave.pk %}" onclick="this.disabled=true" id="buttonid"  class="btn btn-danger">Decline</a>
-                                            </td>
+                                          
                                             
                                         </tr>
                                         {% endfor%}

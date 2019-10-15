@@ -57,8 +57,8 @@ def addEmployee(request):
 @login_required(login_url="/login/")
 def employee_list(request):
     all_users = User.objects.all()
-
     return render (request, 'admins/employee_list.html', {'all_users':all_users})
+
 
 @login_required
 def apply_leave(request):
@@ -66,7 +66,7 @@ def apply_leave(request):
     current_user = request.user
 
     if current_user.is_superuser == True:
-        return redirect(managersite)
+        return redirect(hrsite)
 
         # return render(request, 'admins/hr.html')
     elif current_user.is_staff==True:
@@ -103,17 +103,10 @@ def apply_leave(request):
 
     return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, 'requested_days': requested_days})
 
-
 def table (request):
-    leaves = Leave.print_all()
+    current_user = request.user
+    leaves = Leave.objects.filter(user = current_user)
     return render(request, 'sanergytemplates/table.html',{ "leavess": leaves})
-
-
-@login_required
-def managersite(request):
-    employees=Profile.objects.filter(is_employee=True).all()
-    leaves = Leave.print_all()
-    return render(request, 'admins/manager.html',{'employees':employees , "leavess": leaves})
 
 
 @login_required
@@ -121,12 +114,6 @@ def hrsite(request):
     employees=Profile.objects.filter(is_employee=True).all()
     leaves = Leave.print_all()
     return render(request, 'admins/hr.html',{'employees':employees , "leavess": leaves})
-
-
-@login_required
-def single_leave(request,leave_id):
-    single_leave = Leave.objects.get(leave_id)
-    return render(request, 'admins/single_leave.html',{"single_leave": single_leave})
 
 
 @login_required
@@ -142,7 +129,6 @@ def accept_leave(request,pk):
     leave.save()
     status_approval_email(name,email,date,date2)
     messages.success(request,'Leave Approval notification sent')
-
     return redirect('managersite')
 
 
@@ -154,13 +140,35 @@ def decline_leave(request,pk):
     name=leave.user.username
     email =leave.user.email
     leave.save()
+
     status_declined_email(name,email)
     messages.success(request,'Leave Decline notification sent')
-
     return redirect('managersite')
 
-# def individual_leaves(request, user_id):
-#     current_user = request.user
-#     users_leaves = Leave.objects.filter(user = current_user)
-#     return render(request, 'users/profile.html',{"users_leaves": users_leaves})
 
+# vew for manager to get leave requests of his department employees 
+@login_required
+def managersite(request):
+    current_user = request.user
+
+    if current_user.is_superuser == True:
+        return redirect(hrsite)
+
+    else:
+        # department employees query 
+        department_employees = Profile.objects.filter(department = current_user.profile.department).all()
+        departmental_leaves = Leave.objects.filter(user__profile__department__department_name=current_user.profile.department.department_name).all()
+        # department leaves query 
+        return render (request, 'admins/manager.html', {'department_employees':department_employees, 'departmental_leaves':departmental_leaves})
+
+@login_required
+def departmental_leaves(request):
+    current_user = request.user
+    if current_user.is_superuser == True:
+        return redirect(hrsite)
+
+    else:
+        # department leaves query 
+        departmental_leaves = Leave.objects.filter(user__profile__department__department_name=current_user.profile.department.department_name).all()
+
+        return render (request, 'sanergytemplates/department_employeesonleave.html', {'departmental_leaves':departmental_leaves})
