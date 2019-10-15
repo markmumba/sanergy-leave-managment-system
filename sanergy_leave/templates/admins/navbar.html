@@ -101,14 +101,22 @@
   </div>
   <br>
  
-  {% if user.is_authenticated %}
+ 
+  {% if user.is_superuser %}
 <a href="{% url 'profile'%}">PROFILE</a>
+  <a href="{% url 'apply_leave' %}">LEAVES</a>
+  <a href="{% url 'addEmployee' %}">ADD EMPLOYEES</a>
+  <a href="{% url 'employee_list' %}">ALL EMPLOYEES</a>
+  <a href="{% url 'logout' %}">LOGOUT</a>
+  
+  {% else %}
+  <a href="{% url 'profile'%}">PROFILE</a>
   <a href="{% url 'apply_leave' %}">LEAVES</a>
   <a href="{% url 'addEmployee' %}">ADD EMPLOYEES</a>
   <a href="{% url 'managersite' %}">ALL EMPLOYEES</a>
   <a href="{% url 'logout' %}">LOGOUT</a>
-
-      {% endif %}
+  {% endif %}
+  
 
 </div>
 

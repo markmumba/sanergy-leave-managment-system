@@ -70,7 +70,7 @@ def apply_leave(request):
 
         # return render(request, 'admins/hr.html')
     elif current_user.is_staff==True:
-        return redirect(managersite)
+        return redirect(departmental_leaves)
 
     else:
 
@@ -98,13 +98,18 @@ def apply_leave(request):
                 return redirect('table')
 
         else:
-            
             form = LeaveForm()
 
-    return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, 'requested_days': requested_days})
+            current_user = request.user
+
+            department_leaves = Leave.objects.filter(user__profile__department__department_name=current_user.profile.department.department_name).all()
+            
+            
+
+    return render(request, 'sanergytemplates/leave_apply.html', {"lform": form, 'requested_days': requested_days, 'department_leaves':department_leaves})
 
 def table (request):
-    current_user = request.user
+    current_user = request.userpaddingpadding
     leaves = Leave.objects.filter(user = current_user)
     return render(request, 'sanergytemplates/table.html',{ "leavess": leaves})
 
@@ -151,24 +156,15 @@ def decline_leave(request,pk):
 def managersite(request):
     current_user = request.user
 
-    if current_user.is_superuser == True:
-        return redirect(hrsite)
-
-    else:
-        # department employees query 
-        department_employees = Profile.objects.filter(department = current_user.profile.department).all()
-        departmental_leaves = Leave.objects.filter(user__profile__department__department_name=current_user.profile.department.department_name).all()
-        # department leaves query 
-        return render (request, 'admins/manager.html', {'department_employees':department_employees, 'departmental_leaves':departmental_leaves})
+    department_employees = Profile.objects.filter(department = current_user.profile.department).all()
+    # department leaves query 
+    return render (request, 'admins/manager.html', {'department_employees':department_employees})
 
 @login_required
 def departmental_leaves(request):
     current_user = request.user
-    if current_user.is_superuser == True:
-        return redirect(hrsite)
 
-    else:
-        # department leaves query 
-        departmental_leaves = Leave.objects.filter(user__profile__department__department_name=current_user.profile.department.department_name).all()
+    departmental_leaves = Leave.objects.filter(user__profile__department__department_name=current_user.profile.department.department_name).all()
 
-        return render (request, 'sanergytemplates/department_employeesonleave.html', {'departmental_leaves':departmental_leaves})
+    return render (request, 'sanergytemplates/department_employeesonleave.html', {'departmental_leaves':departmental_leaves})
+

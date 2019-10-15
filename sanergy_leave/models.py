@@ -35,6 +35,9 @@ class LeaveType(models.Model):
 
 class Department(models.Model):
     department_name = models.CharField(max_length=30, default = 'Service')
+    
+    class Meta:
+        ordering = ('-id',)
                                        
     def __str__(self):
         return f'{self.department_name} Department'
