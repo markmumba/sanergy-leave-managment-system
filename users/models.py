@@ -23,7 +23,6 @@ class Profile(models.Model):
     is_employee =  models.BooleanField(default=True, null=True)
 
 
-
     def __str__(self):
       return f'{self.user.username} Profile'
 
