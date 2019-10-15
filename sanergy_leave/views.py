@@ -149,3 +149,4 @@ def employee_list(request):
     all_users = User.objects.all()
   
     return render (request, 'admins/employee_list.html', {'all_users':all_users})
+
