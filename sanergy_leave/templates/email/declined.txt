@@ -1,0 +1,4 @@
+
+<h1>Hello {{Leave.user.username}}</h1>
+
+Your leave has been declined. For more information visit the Manager 

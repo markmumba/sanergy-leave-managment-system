@@ -1,65 +1,104 @@
 import datetime
-from enum import Enum
+
+from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
-from  sanergy_leave.utils import ChoiceEnum
-from users.models import *
+from django.utils.html import escape, mark_safe
+from PIL import Image
 
 
-# Create your models here.
+class EmploymentTerm(models.Model):
+  EMPLOYMENT_TERMS = (
+    ('PERMANENT', 'PERMANENT'),
+    ('PARTTIME', 'PARTTIME'),
+    ('PROBATIONARY', 'PROBATIONARY'),
+    )
+  Employment_Terms = models.CharField(max_length=20, choices=EMPLOYMENT_TERMS, default='probationary')
+  def __str__(self):
+    return self.Employment_Terms
 
-class workerChoices(ChoiceEnum):
-    Male = 'M'
-    Female = 'F'
-    # worker level
-    Employee = 'Employee'
-    Manager = 'Manager'
-    HR = 'HR'
-    # employment status
-    Permanent = 'Permanent'
-    Probationary = 'Probationary'
-    Limited_term = 'Limited-term'
-    Temporary = 'Temporary'
+class LeaveType(models.Model):
+  LEAVE_CHOICES = (
+    ('MATERNITY_LEAVE', 'MATERNITY_LEAVE'),
+    ('PATERNITY_LEAVE','PATERNITY_LEAVE'),
+    ('ANNUAL_LEAVE','ANNUAL_LEAVE'),
+    ('COMPASSIONATE_LEAVE','COMPASSIONATE_LEAVE'),
+    ('SICK_LEAVE','SICK_LEAVE'),
+    ('STUDY_LEAVE', 'STUDY_LEAVE'),
+    )
+  Leave_Types = models.CharField(max_length=20, choices=LEAVE_CHOICES, default='annual')
 
-    class Meta:
-        Abstract=True
-
-    # leave categories and their statuses
-
-class EmpLeaveRequestChoices(ChoiceEnum):
-    Personal_Leave = 'Personal'
-    Annual_Leave = 'Annual'
-    Military_Leave = 'Military'
-    Pregnancy_Disability_Leave = 'Expectant'
-    Pending_Status = 'Pending'
-    Approved_Status = 'Approved'
-    Declined_Status = 'Declined'
-    Cancelled_Status = 'Cancelled'
-
-    class Meta:
-        Abstract=True
+  def __str__(self):
+    return self.Leave_Types
 
 
+class Department(models.Model):
+    department_name = models.CharField(max_length=30, default = 'Service')
+                                       
+    def __str__(self):
+        return f'{self.department_name} Department'
 
-# citrus_fans = Profile.objects.filter(
-#     favourite_fruit__in=[Fruit.orange, Fruit.lemon, Fruit.lime])
+    @classmethod
+    def get_department(cls):
+        all_departments = cls.objects.all()
+        return all_departments
 
 class Leave(models.Model):
-    empLeave_req_id= models.AutoField(primary_key=True)
-    emp_id=models.ForeignKey(Profile, on_delete=models.CASCADE,default=0)
-    emp_fullname=models.CharField(max_length=60)
-    Leave_Type = models.CharField(max_length=300)
+
+    Approved = 0
+    Pending = 1
+    Declined = 2
+    Statuses = (
+    (Approved,'Approved'),
+    (Pending, 'Pending'),
+    (Declined, 'Declined'),
+    )
+
+
+    leave_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner', null=True)
+    Leave_Type = models.ForeignKey(LeaveType,on_delete=models.CASCADE)
+    leave_issuer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leave_issuer', null=True)
     Begin_Date = models.DateField(help_text='Leave begin date')
     End_Date = models.DateField(help_text='Leave end date')
     Requested_Days = models.PositiveIntegerField(default=0,help_text='Total no of requested leave days')
-    Comments = models.CharField(max_length=1000, null=True)
+    leave_status= models.IntegerField(choices=Statuses,default=1)
+    Comments = models.CharField(max_length=500, null=True)
+
+    class Meta:
+        ordering = ('-leave_id',)
 
     def __str__(self):
-        return '%s %s %s' % (self.empLeave_req_id, self.emp_id, self.emp_fullname)
-
-
+        return '%s %s' % (self.leave_id, self.leave_issuer)
 
     @classmethod
-    def print_all(cls):
+    def print_all(cls, pk=id):
         leave = Leave.objects.all()
         return leave
+
+    @classmethod
+    def get_single_user_notice(cls,owner):
+        user_leaves=cls.objects.filter(user=owner).all()
+        return user_leaves
+
+class Notice(models.Model):
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    topic = models.CharField(max_length=100, default="Emergency Notice", null=False, blank=False)
+    message = models.TextField(null=False, blank=False)
+
+    class Meta:
+        ordering = ('-id',)
+
+    def __str__(self):
+        return self.topic
+
+    @classmethod
+    def get_all_notice(cls):
+        all_notices=cls.objects.all()
+        return all_notices
+
+    @classmethod
+    def get_single_user_notice(cls,owner):
+        user_notices=cls.objects.filter(owner=owner).all()
+        return user_notices

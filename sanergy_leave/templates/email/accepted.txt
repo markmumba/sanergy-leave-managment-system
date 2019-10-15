@@ -1,0 +1,5 @@
+<h1>Hello {{Leave.user.username}}</h1>
+
+Your leave has been approved .
+  It starts on :{{date}}
+  Ends on : {{date2}}
