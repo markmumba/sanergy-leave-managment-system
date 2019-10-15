@@ -8,9 +8,9 @@ def daysHoursMinutesSecondsFromSeconds(seconds):
 	minutes, seconds = divmod(seconds, 60)
 	hours, minutes = divmod(minutes, 60)
 	days, hours = divmod(hours, 24)
-	return (days, hours, minutes, seconds)
+	return days
 
-leaving_date = datetime.strptime('2019-05-01 01:00:00', '%Y-%m-%d %H:%M:%S')
-now = datetime.now()
+leaving_date = datetime.strptime('2019-10-16', '%Y-%m-%d')
+now = datetime.strptime('2019-10-15', '%Y-%m-%d')
 
-print ("%d days, %d hours, %d minutes, %d seconds" % daysHoursMinutesSecondsFromSeconds(dateDiffInSeconds(now, leaving_date)))
+print ("%d days" % daysHoursMinutesSecondsFromSeconds(dateDiffInSeconds(now, leaving_date)))

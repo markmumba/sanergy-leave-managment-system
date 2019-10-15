@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "admins/base.html" %}
 {% load bootstrap4 %}
 {% load staticfiles %}
 {% block content %}
@@ -79,9 +79,9 @@
                 <td>{{leave.Requested_Days}}</td>
                 <td>{{leave.Comments}}</td>
                 <td>{{leave.get_leave_status_display}}</td>
-                <td> <a href="{% url 'accept_leave' leave.pk %}" class="btn btn-success">Accept</a>
+                <td> <a href="{% url 'accept_leave' leave.pk %}"  onclick="this.disabled=true" id="buttonid" class="btn btn-success">Accept</a>
                 </td>
-                <td> <a href="{% url 'decline_leave' leave.pk %}" class="btn btn-danger">Decline</a>
+                <td> <a href="{% url 'decline_leave' leave.pk %}" onclick="this.disabled=true" id="buttonid"  class="btn btn-danger">Decline</a>
                 </td>
 
             </tr>
@@ -98,6 +98,12 @@
 
 
 </body>
+
+<script>
+    $("#buttonid").on("click", function() {
+    $(this).prop("disabled", true);
+});
+</script>
 
 </html>
 {% endblock %}

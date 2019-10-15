@@ -27,10 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    'moment',
     'bootstrap4',
     'social_django',
     'users',
@@ -59,7 +59,6 @@ ROOT_URLCONF = 'sanergy.urls'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = ('apply_leave')#user is taken home after login in
 NOTIFICATIONS_SOFT_DELETE=True
-
 
 TEMPLATES = [
     {

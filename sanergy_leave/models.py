@@ -61,7 +61,7 @@ class Leave(models.Model):
     leave_issuer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leave_issuer', null=True)
     Begin_Date = models.DateField(help_text='Leave begin date')
     End_Date = models.DateField(help_text='Leave end date')
-    Requested_Days = models.PositiveIntegerField(default=0,help_text='Total no of requested leave days')
+    Requested_Days = models.PositiveIntegerField(default=0,help_text='Total no of requested leave days',blank=True,null=True)
     leave_status= models.IntegerField(choices=Statuses,default=1)
     Comments = models.CharField(max_length=500, null=True)
 

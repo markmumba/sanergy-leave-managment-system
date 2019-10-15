@@ -13,7 +13,7 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=30,null=True)
     Address=  models.CharField(max_length=30,null=True)
     country = models.CharField(max_length=30,null=True)
-    zip_code = models.IntegerField(null=True)
+    zip_code = models.PositiveIntegerField(null=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     department = models.ForeignKey(Department, on_delete=models.DO_NOTHING,null=True)
     date_of_birth = models.DateField(default=timezone.now)
@@ -21,7 +21,6 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=15, blank=True,null=True)
     is_staff = models.BooleanField(default=False, null=True)
     is_employee =  models.BooleanField(default=True, null=True)
-
 
 
     def __str__(self):
