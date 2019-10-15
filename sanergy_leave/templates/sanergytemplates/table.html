@@ -31,52 +31,52 @@
 </style>
 
 <div class="col " style=" padding-left:300px; padding-top: 50px; ">
-        <table>
-           
+    <table>
+     
     </div>
 </div>
 </div>
 <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="title" style="text-align: center; font-weight:600; font-size:50px;">Leave History </h4>
-                            
-                        </div>
-                        <div class="content table-responsive table-full-width">
-                            <table class="table table-hover table-striped" style="font-size: 17px;">
-                                    <tr>
-                                            <th>Employee </th>
-                                            <th>Begin Date</th>
-                                            <th>End Date</th>
-                                            <th>Requested Days</th>
-                                            <th>Status </th>
-                                        
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title" style="text-align: center; font-weight:600; font-size:50px;">Leave History </h4>
+                        
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped" style="font-size: 17px;">
+                            <tr>
+                                <th>Employee </th>
+                                <th>Begin Date</th>
+                                <th>End Date</th>
+                                <th>Requested Days</th>
+                                <th>Status </th>
+                                
 
-                                            <!-- <th> Leave Type</th> -->
-                            
-                                        </tr>
-                                        {% for leave in leavess %}
-                                        <tr>
-                            
-                                            <td>{{leave.user.username}}</td>
-                                            <td>{{leave.Begin_Date}}</td>
-                                            <td>{{leave.End_Date}}</td>
-                                            <td>{{leave.Requested_Days }} </td>
-                                            <td>{{leave.get_leave_status_display}}</td>
-                                          
-                                            
-                                        </tr>
-                                        {% endfor%}
-                                    </table>
-                            
+                                <!-- <th> Leave Type</th> -->
+                                
+                            </tr>
+                            {% for leave in leavess %}
+                            <tr>
+                                
+                                <td>{{leave.user.username}}</td>
+                                <td>{{leave.Begin_Date}}</td>
+                                <td>{{leave.End_Date}}</td>
+                                <td>{{leave.Requested_Days }} </td>
+                                <td>{{leave.get_leave_status_display}}</td>
+                                
+                                
+                            </tr>
+                            {% endfor%}
+                        </table>
+                        
 
-                        </div>
                     </div>
                 </div>
+            </div>
 
 
-{% endblock %}
+            {% endblock %}
 
