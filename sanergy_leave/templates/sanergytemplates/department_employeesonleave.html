@@ -54,27 +54,43 @@
 
     <div class="leaves" style="padding-left: 300px; padding-top: 100px;  ">
         <table class="table table-hover table-striped" style="font-size: 15px;">
-            <th>Name </th>
-            <th>Joined Date</th>
-            <th>Action</th>
+            <tr>
+                <th>Name </th>
+                <th>Type</th>
+                <th>Requested Days</th>
+                <th>Begin Date</th>
+                <th>End Date</th>
+                <th>Comment</th>
+                <th>Status </th>
+                <th>Action</th>
+                <th></th>
 
-            <!-- <th> Leave Type</th> -->
-        </tr>
-        {% for leave in department_employees %}
-        <tr>
-            <td>{{leave.user}}</td>
-            <td>{{leave.profile.joined_date}}</td>
-            <td> <a href="http://127.0.0.1:8000/admin/auth/user/" class="btn btn-danger">Delete</a>
-            </td>
 
-        </tr>
-        {% endfor%}
-    </table>
-</div>
+                <!-- <th> Leave Type</th> -->
 
-{% block scripts %}
+            </tr>
+            {% for leave in departmental_leaves %}
+            <tr>
+                <td>{{leave.user}}</td>
+                <td>{{leave.Leave_Type}}</td>
+                <td>{{leave.Requested_Days}}</td>
+                <td>{{leave.Begin_Date}}</td>
+                <td>{{leave.End_Date}}</td>
+                <td>{{leave.Comments}}</td>
+                <td>{{leave.get_leave_status_display}}</td>
+                <td> <a href="{% url 'accept_leave' leave.pk %}"  onclick="this.disabled=true" id="buttonid" class="btn btn-success">Accept</a>
+                </td>
+                <td> <a href="{% url 'decline_leave' leave.pk %}" onclick="this.disabled=true" id="buttonid"  class="btn btn-danger">Decline</a>
+                </td>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            </tr>
+            {% endfor%}
+        </table>
+    </div>
+
+    {% block scripts %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </script>
 {% bootstrap_javascript %}
