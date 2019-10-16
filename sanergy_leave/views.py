@@ -57,13 +57,8 @@ def addEmployee(request):
 @login_required(login_url="/login/")
 def employee_list(request):
     all_users = User.objects.all()
-<<<<<<< HEAD
-  
-    return render (request, 'admins/employee_list.html', all_users)
-=======
 
     return render (request, 'admins/employee_list.html', {'all_users':all_users})
->>>>>>> 171391791e2be0839f4934f1a7b886a64b932429
 
 @login_required
 def apply_leave(request):

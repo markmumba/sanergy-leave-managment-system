@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'moment',
+    
     'bootstrap4',
     'social_django',
     'users',
@@ -89,8 +89,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'sanergy',
-        'USER':'moringa',
-        'PASSWORD':'joe',
+        'USER':'mark',
+        'PASSWORD':'123',
     }
 }
 

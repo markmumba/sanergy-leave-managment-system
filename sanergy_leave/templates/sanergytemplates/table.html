@@ -67,10 +67,10 @@
                                             <td>{{leave.End_Date}}</td>
                                             <td>{{leave.Requested_Days }} </td>
                                             <td>{{leave.get_leave_status_display}}</td>
-                                            <td> <a href="{% url 'accept_leave' leave.pk %}"  onclick="this.disabled=true" id="buttonid" class="btn btn-success">Accept</a>
+                                            <!-- <td> <a href="{% url 'accept_leave' leave.pk %}"  onclick="this.disabled=true" id="buttonid" class="btn btn-success">Accept</a>
                                             </td>
                                             <td> <a href="{% url 'decline_leave' leave.pk %}" onclick="this.disabled=true" id="buttonid"  class="btn btn-danger">Decline</a>
-                                            </td>
+                                            </td> -->
                                             
                                         </tr>
                                         {% endfor%}
