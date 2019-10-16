@@ -13,16 +13,17 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=30,null=True)
     Address=  models.CharField(max_length=30,null=True)
     country = models.CharField(max_length=30,null=True)
-    zip_code = models.PositiveIntegerField(null=True)
+    zip_code = models.PositiveIntegerField(null=True, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    department = models.ForeignKey(Department, on_delete=models.DO_NOTHING,null=True)
+    department = models.ForeignKey(Department, on_delete=models.DO_NOTHING,null=True, blank=True)
     date_of_birth = models.DateField(default=timezone.now)
     joined_date = models.DateField(default=timezone.now)
     phone_number = models.CharField(max_length=15, blank=True,null=True)
     is_staff = models.BooleanField(default=False, null=True)
     is_employee =  models.BooleanField(default=True, null=True)
 
-
+    class Meta:
+        ordering = ('user_id',)
 
     def __str__(self):
       return f'{self.user.username} Profile'

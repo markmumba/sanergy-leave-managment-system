@@ -34,10 +34,7 @@ def profile(request):
 
     if request.user.is_superuser==True:
          return render(request, 'users/profiles.html', context)
+    elif request.user.is_staff == True:
+        return render(request, 'users/staffprofile.html', context)
     else:
          return render(request, 'users/profile.html', context)
-
-
-
-
-   

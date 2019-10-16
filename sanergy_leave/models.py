@@ -27,7 +27,7 @@ class LeaveType(models.Model):
     ('SICK_LEAVE','SICK_LEAVE'),
     ('STUDY_LEAVE', 'STUDY_LEAVE'),
     )
-  Leave_Types = models.CharField(max_length=20, choices=LEAVE_CHOICES, default='annual')
+  Leave_Types = models.CharField(max_length=20, choices=LEAVE_CHOICES, default='ANNUAL_LEAVE')
 
   def __str__(self):
     return self.Leave_Types
@@ -35,12 +35,15 @@ class LeaveType(models.Model):
 
 class Department(models.Model):
     department_name = models.CharField(max_length=30, default = 'Service')
+
+    class Meta:
+        ordering = ('-id',)
                                        
     def __str__(self):
         return f'{self.department_name} Department'
 
     @classmethod
-    def get_department(cls):
+    def get_departments(cls):
         all_departments = cls.objects.all()
         return all_departments
 
@@ -55,15 +58,15 @@ class Leave(models.Model):
     (Declined, 'Declined'),
     )
 
-
     leave_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner', null=True)
     Leave_Type = models.ForeignKey(LeaveType,on_delete=models.CASCADE)
     leave_issuer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leave_issuer', null=True)
     Begin_Date = models.DateField(help_text='Leave begin date')
     End_Date = models.DateField(help_text='Leave end date')
-    Requested_Days = models.PositiveIntegerField(default=0,help_text='Total no of requested leave days')
+    Requested_Days = models.PositiveIntegerField(default=0,help_text='Total no of requested leave days',blank=True,null=True)
     leave_status= models.IntegerField(choices=Statuses,default=1)
+    leave_balance = models.PositiveIntegerField(default=0, blank=True, null=True)
     Comments = models.CharField(max_length=500, null=True)
 
     class Meta:
@@ -102,3 +105,4 @@ class Notice(models.Model):
     def get_single_user_notice(cls,owner):
         user_notices=cls.objects.filter(owner=owner).all()
         return user_notices
+

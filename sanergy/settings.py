@@ -27,10 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    
     'bootstrap4',
     'social_django',
     'users',
@@ -59,7 +59,6 @@ ROOT_URLCONF = 'sanergy.urls'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = ('apply_leave')#user is taken home after login in
 NOTIFICATIONS_SOFT_DELETE=True
-
 
 TEMPLATES = [
     {
@@ -160,7 +159,6 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1026629942419-qokhhup918dhbnmjfo21u5d2gdi9can3.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'qEQJSXwqbF0LiYIr5KVx2GKR'
 
 LOGIN_URL = '/auth/login/google-oauth2/'
-
 LOGOUT_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'

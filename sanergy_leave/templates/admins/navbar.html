@@ -19,12 +19,12 @@
     padding-top: 20px;
     font-family: 'Nunito', sans-serif;
     text-align: center;
-  
+    
   }
 
   :root {
-  --mainColor: #ffffff;
-}
+    --mainColor: #ffffff;
+  }
   .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
@@ -35,31 +35,31 @@
     font-size: 20px;
     font-weight: 600;
     background:
-     linear-gradient(
-       to right,
-       var(--mainColor) 0%,
-       var(--mainColor) 5px,
-       transparent 5px
+    linear-gradient(
+     to right,
+     var(--mainColor) 0%,
+     var(--mainColor) 5px,
+     transparent 5px
      );
     background-repeat: repeat-x;
     background-size: 100%;
 
-  padding-left: 10px;
-  text-decoration: none;
+    padding-left: 10px;
+    text-decoration: none;
 
   }
   .sidenav a:hover {
-  color: black;
-  text-decoration: none;
-  background:
-     linear-gradient(
-       to right,
-       var(--mainColor) 0%,
-       var(--mainColor) 5px,
-       transparent
+    color: black;
+    text-decoration: none;
+    background:
+    linear-gradient(
+     to right,
+     var(--mainColor) 0%,
+     var(--mainColor) 5px,
+     transparent
      );
 
-}
+  }
 
   .main {
     margin-left: 160px;
@@ -87,61 +87,37 @@
 </style>
 
 
-
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="font-size: 25px; font-family: 'Nunito', sans-serif;">
-
-  <div style="color: white;" class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-
-      <a class="logo" href="{% url 'homepage' %}">
-        <img class="nav-logo" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-white-195.png"
-          width="200px" alt="Sanergy">
-      </a>
-      {% if user.is_authenticated %}
-      <div class="navbar" style="float: right; padding-left: 1400px;">
-        <li class="nav-item">
-          <a class="dropdown-item" href="{% url 'profile'%}">{{ user.username }}</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="dropdown-item" href="{% url 'logout' %}">logout</a>
-        </li>
-      </div>
-      {% endif %}
-
-  </div>
-
-  </div>
-</nav> -->
-
-
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <div class="sidenav">
   <a class="logo" href="{% url 'homepage' %}">
     <img class="nav-logo" src="http://www.sanergy.com/wp-content/uploads/2018/11/logo-small-white-195.png" width="160px"
-      alt="Sanergy">
+    alt="Sanergy">
   </a>
   <div class="pep" style="padding-left: 40px;">
     <img class="circular--square" src="https://image.flaticon.com/icons/svg/265/265674.svg" />
     <p style="color: white;  font-size: 30px;;">{{ user.username }}</p>
   </div>
   <br>
- 
-  {% if user.is_authenticated %}
-<a href="{% url 'profile'%}">PROFILE</a>
+  
+  
+  {% if user.is_superuser %}
+  <a href="{% url 'profile'%}">PROFILE</a>
   <a href="{% url 'apply_leave' %}">LEAVES</a>
   <a href="{% url 'addEmployee' %}">ADD EMPLOYEES</a>
   <a href="{% url 'employee_list' %}">ALL EMPLOYEES</a>
   <a href="{% url 'logout' %}">LOGOUT</a>
+  
+  {% else %}
+  <a href="{% url 'profile'%}">PROFILE</a>
+  <a href="{% url 'apply_leave' %}">LEAVES</a>
+  <a href="{% url 'addEmployee' %}">ADD EMPLOYEES</a>
+  <a href="{% url 'managersite' %}">ALL EMPLOYEES</a>
+  <a href="{% url 'logout' %}">LOGOUT</a>
+  {% endif %}
+  
 
-      {% endif %}
-
- 
 </div>
-
-
 
 {% endblock %}

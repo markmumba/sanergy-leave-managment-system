@@ -1,8 +1,112 @@
-{% load crispy_forms_tags %}
+{% extends "admins/base.html" %}
 {% load bootstrap4 %}
-{% load static %}
+{% load staticfiles %}
 {% block content %}
 
-{% include 'admins/manager.html' %}
 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> Manager Site</title>
+    {{form.media}}
+
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Be+Vietnam&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+
+
+    {% endblock %}
+
+</head>
+<style>
+    table {
+        font-family: 'Nunito', sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        
+        font-weight: 500;
+
+    }
+
+
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        height: 100px;
+
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+
+    }
+</style>
+
+<body>
+
+    <div class="leaves" style="padding-left: 300px; padding-top: 100px;  ">
+        <table class="table table-hover table-striped" style="font-size: 15px;">
+            <th>Employee </th>
+            <th>Type</th>
+            <th>Requested Days</th>
+            <th>Begin Date</th>
+            <th>End Date</th>
+            <th>Department</th>
+            <th>Comment</th>
+            <th>Status </th>
+            <th></th>
+            <th></th>
+
+            <!-- <th> Leave Type</th> -->
+
+        </tr>
+        {% for leave in leavess %}
+        <tr>
+
+            <td>{{leave.user.username}}</td>
+            <td>{{leave.Leave_Type}}</td>
+            <td>{{leave.Requested_Days}}</td>
+            <td>{{leave.Begin_Date}}</td>
+            <td>{{leave.End_Date}}</td>
+            <td>{{leave.user.Department}}</td>
+            <td>{{leave.Comments}}</td>
+            <td>{{leave.get_leave_status_display}}</td>
+            <td> <a href="{% url 'accept_leave' leave.pk %}"  onclick="this.disabled=true" id="buttonid" class="btn btn-success">Accept</a>
+            </td>
+            <td> <a href="{% url 'decline_leave' leave.pk %}" onclick="this.disabled=true" id="buttonid"  class="btn btn-danger">Decline</a>
+            </td>
+
+        </tr>
+        {% endfor%}
+    </table>
+</div>
+
+{% block scripts %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</script>
+{% bootstrap_javascript %}
+
+
+</body>
+
+<script>
+    $("#buttonid").on("click", function() {
+        $(this).prop("disabled", true);
+    });
+</script>
+
+</html>
+{% endblock %}
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "sanergytemplates/base.html" %}
+{% extends "admins/base.html" %}
 {% load crispy_forms_tags %}
 {% load bootstrap4 %}
 {% load staticfiles %}
@@ -21,6 +21,7 @@
     width: 300px;
 }
 </style>
+
 <div class="content">
   <div class="container-fluid" style="padding-left: 300px; padding-top: 90px;">
 
@@ -30,9 +31,9 @@
         <div class="card" style="width: 1100px; height:800px; color:black;">
           <div class="header">
           </div>
-         
+          
           <div class="content" style="padding: 30px;">
-
+            
             <form>
               <div class="row">
                 <div class="col-md-5">
@@ -50,8 +51,7 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label>Username</label>
-                  
-            <input type="text" class="form-control"style="color: black;" disabled placeholder="Username" value="{{ user.username }}">
+                    <input type="text" class="form-control"style="color: black;" disabled placeholder="Username" value="{{ user.username }}">
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -80,5 +80,5 @@
         <button class="btn btn-outline-info" type="submit"><a class="navbar-brand">Update</a> </button>
       </div>
     </form>
-
     {% endblock content %}
+    staffprofile
